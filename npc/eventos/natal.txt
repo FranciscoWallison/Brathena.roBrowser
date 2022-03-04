@@ -1,0 +1,358 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script:  natal.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/Herc/brA Dev. Team                   |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/Herc/brA: 1.1/1.1/1.1/1.0                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+xmas_in,100,96,4	script	Papai Noel::Santa2	4_M_SANTA,{
+	mes "[Papai Noel]";
+	if(xmas_npc==0) xmas_npc = 1; // For Lutie & Bard quest
+	if(#event_xmas > 0 && #event_xmas < 30 ) goto L_Start;
+	mes "Feliz Natal!";
+	if(Class==0 || #event_xmas>=30 ) close; //anti exploit protection
+	mes "Eu tenho um presente para você! Ho Ho Ho!";
+	getitem rand(664,667),1; //gives one of 4 gift boxes
+	++#event_xmas;
+	close;
+
+L_Start:
+	mes "Eu estou tendo me mordido com um problema...";
+	mes "Você gostaria de escutar?";
+	next;
+	switch (select("Escutar Papai Noel.","Dar provas ao Papai Noel.","Cancel.")) {
+	case 1: // Listen
+		mes "[Papai Noel]";
+		mes "Meu problema é este.";
+		mes "Parece que há algo lá fora";
+		mes "que está representando a mim e";
+		mes "espalhando o terror por toda a terra.";
+		next;
+		mes "[Papai Noel]";
+		mes "Parece a lenda do Grinch, eles estão pegando";
+		mes "todos os brinquedos das crianças e mantendo";
+		mes "para si mesmo.";
+		next;
+		mes "[Papai Noel]";
+		mes "Eu estou ocupado fazendo os ";
+		mes "brinquedos do próximo ano, então não posso";
+		mes "sair atrás deles.";
+		mes "Eu gostaria que você vá e";
+		mes "destrua estes Noel pra mim.";
+		next;
+		mes "[Papai Noel]";
+		mes "Eles estão em posse do meu";
+		mes "saco mágico, no entanto, eles podem";
+		mes "tentar escapar para outro lugar";
+		mes "quando você tentar atacar.";
+		next;
+		mes "[Papai Noel]";
+		mes "Porém,";
+		mes "na pressa, eles tendem a deixar cair coisas.";
+		mes "Se por acaso dele cair uma de suas Meias com Furos";
+		mes "que ele usa para roubar os pobres brinquedos";
+		mes "de crianças, pegue-os.";
+		next;
+		mes "[Papai Noel]";
+		mes "Se você coletar 3 destes, vou dar-lhe";
+		mes "yum protótipo de caixa de mistériosa que";
+		mes "tenho mantido pelo laboratório.";
+		mes "Ela solta presentes aleatórios";
+		mes "e me salva de toneladas de trabalho.";
+		close;
+	case 2: // Give proof
+		mes "[Papai Noel]";
+		if(countitem(7034) < 3) goto L_NotEnuf;
+		delitem 7034,3;
+		mes "Parece que vem fazendo";
+		mes "um bom trabalho com estes";
+		mes "falsos Noel. Continue assim!";
+		next;
+		getitem 644,1; //Gift Box Prototype
+		++#event_xmas;
+		mes "[Papai Noel]";
+		mes "Aqui está sua recompensa.";
+		mes "Se você pegar mais 3, Eu dou a você outro.";
+		mes "Espero que ganhe um bom item.";
+		close;
+	
+		L_NotEnuf:
+			mes "Você não tem o suficiente meias como prova.";
+			mes "Vá toma-las dos Noel Malvado";
+			mes "e pegue mais delas para mim eu irei recompensa-ló.";
+			close;
+	default: // Cancel
+		mes "[Papai Noel]";
+		mes "Posso ver. Bem, pelo menos";
+		mes "vamos reunir novamente nas manhãs de Natal.";
+		close;
+	}
+
+OnInit:
+	disablenpc "Papai Noel";
+	end;
+}
+
+// Xmas Goblin Spawns
+//============================================================
+prt_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
+gef_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
+yuno_fild09,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
+
+// Santa Poring Spawns
+//============================================================
+ein_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild00,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild13,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gef_fild14,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+glast_01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+lhz_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+lhz_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+lhz_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+mjolnir_12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild13,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild14,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild15,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild16,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild17,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+moc_fild18,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+pay_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild00,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+prt_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+xmas_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+cmd_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+yuno_fild12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ama_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+gon_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+um_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+um_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+um_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+um_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+nif_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+nif_fild02,0,0,0,0 	monster	Santa Poring	1062,15,0,0,0
+lou_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+hu_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+hu_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+hu_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+hu_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+
+// Antonio Spawns
+//============================================================
+ein_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ein_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ein_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ein_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ein_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ein_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ein_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild00,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild12,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild13,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gef_fild14,0,0,0,0	monster	Antonio	1247,1,0,0,0
+glast_01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+lhz_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+lhz_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+lhz_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_10,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_11,0,0,0,0	monster	Antonio	1247,1,0,0,0
+mjolnir_12,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild12,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild13,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild14,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild15,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild16,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild17,0,0,0,0	monster	Antonio	1247,1,0,0,0
+moc_fild18,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
+pay_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild00,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
+prt_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
+xmas_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+cmd_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
+yuno_fild12,0,0,0,0	monster	Antonio	1247,1,0,0,0
+ama_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+gon_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+um_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+um_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+um_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
+um_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+nif_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+nif_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
+lou_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+hu_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
+hu_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
+hu_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
+hu_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
+
+// Xmas Jakk Spawns
+//============================================================
+gef_dun01,0,0,0,0	monster	Xmas Jakk	1244,5,0,0,0
+//gefenia02,0,0,0,0	monster	Xmas Jakk	1244,5,0,0,0
+
+// Xmas Orc Spawns
+//============================================================
+gef_fild02,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
+gef_fild03,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
+gef_fild10,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
+gef_fild14,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
+alde_dun02,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0

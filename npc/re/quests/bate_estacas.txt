@@ -1,0 +1,129 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: bate_estacas.txt                       |
+//   |--------------------------------------------------------|
+//   | Criado por: Herc/brA Dev. Team                         |
+//   |--------------------------------------------------------|
+//   | Versões Herc/brA: ??/1.0                               |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest Bate-Estacas                          |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena e tradução. [Soulknown]         |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+yuno,179,174,4	script	Bunz	4_M_REPAIR,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
+		mes "[Bunz]";
+		mes "Você está carregando tantos itens que fica difícil dar atenção a você. Retorne quando estiver mais leve.";
+		close;
+	}
+	if (countitem(1549)) {
+		mes "[Bunz]";
+		mes "Então, a barra de metal Bate-Estacas está superando suas expectativas?";
+		close;
+	}
+	if (Class != Job_Mechanic && Class != Job_Mechanic_T && Class != Job_Baby_Mechanic) {
+		mes "[Bunz]";
+		mes "Eu sou um mecãnico aposentado e não tenho nada a tratar com você.";
+		close;
+	}
+	mes "[Bunz]";
+	mes "Oh! Qual a sensação de usar montarias? Apenas pessoas qualificadas podem usar.";
+	next;
+	mes "[Bunz]";
+	mes "Eu? Me retirei a um bom tempo desde que eu mesmo me machuquei... Por esse motivo, não posso montar em  mais nada, que droga...";
+	next;
+	mes "[Bunz]";
+	mes "Então comecei a fazer equipamentos para montarias.";
+	next;
+	mes "[Bunz]";
+	mes "É um desperdício se você não faz o que gosta, não é mesmo? Não pode deixar passar! É a vida a ser vivida!";
+	next;
+	mes "[Bunz]";
+	mes "Algumas pessoas não pensam dessa maneira.";
+	next;
+	mes "[Bunz]";
+	mes "Enfim...Me sinto tão bem que estava fazendo um novo equipamento. Por que não me ajuda?";
+	next;
+	switch(select("Não, estou de passagem.:O que você vai fazer?:Onde eu encontro os materiais?:Eu tenho os materiais.")) {
+	case 1:
+		mes "[Bunz]";
+		mes "Não há nada que você possa fazer para me ajudar?";
+		mes "Ah, então te vejo na próxima!";
+		close;
+	case 2:
+		mes "[Bunz]";
+		mes "Hum, uma enorme barra de metal que poderia esmagar um oponente em um hit!";
+		next;
+		mes "[Bunz]";
+		mes "Não parece fantástico? Mas projetei um dispositivo com molas que é capaz de atacar com grande força.";
+		next;
+		mes "[Bunz]";
+		mes "Imagine que você esteja escondido, então, quando você tiver uma chance, um tiro é capaz de colocar um adversário em condições dolorosas!";
+		mes "Mal posso esperar para vê-lo em ação!";
+		next;
+		mes "[Bunz]";
+		mes "Se você imaginasse o quão bom este tipo de arma poderia ser, eu poderia tornar sua existência realidade.";
+		next;
+		mes "[Bunz]";
+		mes "Traga-me 200 Aços, 30 Tubos Flexíveis, e 1 Broca. Eu consigo fazê-la, basta me trazer os materiais necessários.";
+		close;
+	case 3:
+		mes "[Bunz]";
+		mes "Você pode conseguir muitos Aços caçando Cobalds.";
+		next;
+		mes "[Bunz]";
+		mes "Os Tubos Flexíveis são mais raros, deixados pelos Metalings aos arredores de Einbroch e Lighthalzen.";
+		next;
+		mes "[Bunz]";
+		mes "Por fim, obter uma Broca não é tão fácil, mas acredito que você seja capaz de consegui-la. Haha, vá buscá-los! ";
+		close;
+	case 4:
+		if (countitem(999) < 200 || countitem(7325) < 30 || countitem(1415) < 1) {
+			mes "[Bunz]";
+			mes "Você ainda não tem todos os materiais que eu pedi.";
+			next;
+			mes "[Bunz]";
+			mes "Tenho o hábito de desistir facilmente das coisas que começo a fazer, e volto a fazê-las somente quando estou inspirado.";
+			mes "É melhor você se apressar!";
+			close;
+		} else {
+			mes "[Bunz]";
+			mes "Oh! Estava esperando por você. Por que demorou tanto? Pensei que tinha esquecido o caminho de volta~";
+			mes "Espere um momento.";
+			specialeffect EF_REPAIRWEAPON;
+			next;
+			mes "[Bunz]";
+			mes "está feita! O que você acha? Não é boa?? Não posso acreditar que realizei essa proeza!! Peso, Volume, revestimento, Cor... Tudo perfeito!!!";
+			next;
+			mes "[Bunz]";
+			mes "...........";
+			next;
+			mes "[Bunz]";
+			mes "............................... (um susto!)";
+			next;
+			mes "[Bunz]";
+			mes "Uhumm, de qualquer maneira eu posso produzir outros pra você. Desde que me traga os materiais necessários.";
+			next;
+			mes "[Bunz]";
+			mes "Esse é um outro presente. Pra falar a verdade, sobrou um pouco do material e fiz esse outro... Pegue, são seus.";
+			delitem 999,50;   //Aço
+			delitem 7325,30;  //Tubo Flexível
+			delitem 1415,1;   //Broca
+			getitem 1549,1;   //Bate-Estacas
+			getitem 1360,1;   //Machado de Duas Mãos
+			close;
+		}
+	}
+}

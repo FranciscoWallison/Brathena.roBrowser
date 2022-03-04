@@ -1,0 +1,145 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script:  orelhas_de_coelho.txt                 |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/Herc/brA Dev. Team                   |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/Herc/brA: 1.1/1.1/1.1/1.0                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta,26,229,0	script	Kafra Employee#bunny	4_M_01,{
+	if (BUNYBND == 1) {
+		mes "[Funcionário Kafra]";
+		mes "Olá você aí!~!";
+		mes "Você gostaria de";
+		mes "participar do Evento especial da";
+		mes "^529DFFOrelha de Coelho^000000 da Corporação Kafra?";
+		next;
+		switch(select("Claro, eu trouxe os itens.:Informações do Evento.:Cancelar")) {
+		case 1:
+			mes "[Funcionário Kafra]";
+			mes "Ok.~";
+			mes "Deixe-me verificar";
+			mes "vendo se você trouxe";
+			mes "todos os itens...";
+			next;
+			setarray .@items[0],949,100,706,1,722,1,2213,1;
+			for(.@i = 0; .@i<8; .@i += 2)
+				if (countitem(.@items[.@i]) < .@items[.@i+1]) {
+				mes "[Funcionário Kafra]";
+				mes "Ooh, eu sinto muito";
+				mes "mas você precisa";
+				mes "trazer pelo menos";
+					mes .@items[.@i+1]+" "+getitemname(.@items[.@i])+((!.@i)?"s.":".");
+					close;
+				}
+			mes "[Funcionário Kafra]";
+			mes "Ótimo, eu vejo que";
+			mes "você pegou";
+			mes "tudo que eu preciso";
+			mes "para fazer a Orelha de Coelho.";
+			mes "Por favor espere um momento";
+			mes "enquanto eu coloco eles juntos...";
+			next;
+			for(.@i = 0; .@i<8; .@i += 2)
+				if (countitem(.@items[.@i]) < .@items[.@i+1]) {
+					mes "[Kafra Employee]";
+					mes "Hm?  Sinto Muito,";
+					mes "mas eu realmente não posso";
+					mes "fazer isso agora. Você";
+					mes "precisa "+.@items[.@i+1]+" "+getitemname(.@items[.@i])+((!.@i)?"s":"");
+					mes "em ordem para eu colocar isso";
+					mes "junto na Orelha de Coelho..";
+					close;
+				}
+			delitem 949,100; //Pluma
+			delitem 706,1; //Trevo de Quatro Folhas
+			delitem 722,1; //Pérola
+			delitem 2213,1; //Orelha de Gato
+			mes "[Kafra Employee]";
+			mes "Ah, aqui vai!~";
+			mes "A perfeita Orelha de Coelho!";
+			mes "Bem, espero que gostem.";
+			getitem 2214,1;  // Orelha de Coelho
+			BUNYBND = 0;
+			next;
+			mes "[Funcionário Kafra]";
+			mes "Obrigado por";
+			mes "participar deste";
+			mes "evento especial e que";
+			mes "seu patrocínio continue";
+			mes "nos Serviços Kafra~";
+			close;
+		case 2:
+			goto L_Info;
+		case 3:
+			close;
+		}
+	}
+	mes "[Funcionário Kafra]";
+	mes "Oi você aí~! Você gostaria";
+	mes "de juntar-se ao nosso especial ^529DFFEvento da Orelha de Coelho^000000 feito pela Corporação";
+	mes "Kafra e patrocinado pela";
+	mes "a Corporação de Mercadores de Alberta?";
+	next;
+	switch(select("Entrar no Evento.:Informação do Evento.:Cancelar.")) {
+	case 1:
+		BUNYBND = 1;
+		mes "[Funcionário Kafra]";
+		mes "Ótimo. Obrigado por";
+		mes "participar! Se você";
+		mes "ainda não ouviu, você";
+		mes "precisa coletar esses itens,";
+		mes "caso você deseje que eu coloque";
+		mes "uma Orelha de Coelho em você!...";
+		next;
+		mes "[Funcionário Kafra]";
+		mes "100 Pulmas,";
+		mes "1 Trevo de Quatro Folhas,";
+		mes "1 Orelha de Gato e";
+		mes "1 Pérola. É isso aí!";
+		mes "Boa sorte e eu vou estar";
+		mes "esperando por você aqui.~";
+		close;
+	case 2:
+		break;
+	case 3:
+		close;
+	}
+L_Info:
+	mes "[Funcionário Kafra]";
+	mes "Para agradecer os nossos valiosos";
+	mes "clientes, Corporação Kafra";
+	mes "preparou um evento especial";
+	mes "onde a Funcionário Kafra irá montar";
+	mes "Orelhas de Coelho para os aventureiros";
+	mes "que trouxerem os itens necessários.";
+	next;
+	mes "[Funcionário Kafra]";
+	mes "Para este tipo de item ";
+	mes "muito especial, você deve";
+	mes "trazer 100 Plumas,";
+	mes "1 Trevo de Quatro Folhas,";
+	mes "1 Orelha de Gato e";
+	mes "1 Pérola.";
+	next;
+	mes "[Funcionário Kafra]";
+	mes "Quando estiver pronto,";
+	mes "volte e traga";
+	mes "os itens para mim.";
+	mes "(Patrocinado pela Corporação de Mercadores de Alberta).";
+	close;
+}

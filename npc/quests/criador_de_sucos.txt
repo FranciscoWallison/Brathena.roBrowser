@@ -1,0 +1,325 @@
+//===== Hercules Script ======================================
+//= Juice Maker Quest
+//===== By: ==================================================
+//= kobra_k88
+//===== Current Version: =====================================
+//= 2.1
+//===== Description: =========================================
+//= [Official Conversion]
+//= Learn where to turn apples, bananas, carrots, and grapes
+//= into juice.
+//= Condition if done: (MISC_QUEST & 1)
+//===== Additional Comments: =================================
+//= 1.9 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//=     Added tracking variables in, which are unset when complete.
+//= 2.0 Added missing checkweight. [L0ne_W0lf]
+//= 2.1 Fixed dialog for if your missing the needed items (He always said the dialog for grape juice). [Kisuka]
+//============================================================
+
+prt_in,49,172,3	script	Marianne#juice	1_M_INNKEEPER,{
+	if (MISC_QUEST&1 || morison_meat == 15) {
+		mes "[Marianne]";
+		mes "Ai minha Nossa Senhora, eu não sei o que eu faço com esse menino! Ele só quer saber de comer Carne!";
+		mes "Ele precisa comer Frutas, mas diz que elas são duras demais... Será que ele as comeria trituradas?";
+		next;
+		mother_marienu = 0;
+		morison_meat = 0;
+		MISC_QUEST |= 1;
+		mes "[Marianne]";
+		mes "Eu lembro que alguém disse que tem um moço que faz isso... Tritura as Frutas e as transforma em Suco.";
+		mes "Mas que cabeça a minha, não consigo lembrar se era em Payon ou em Morroc...";
+		close;
+	}
+	if (mother_marienu == 1) {
+		mes "[Marianne]";
+		mes "Morrison, meu filhinho, você precisa comer Frutas!!";
+		mes "Se você comer só Carnes vai virar um porquinho!";
+		next;
+		if ( select( "Conversar:Cancel" ) == 1 ) {
+			mes "[Marianne]";
+			mes "Você tá me achando com cara de quê hein, seu atrevido?";
+			mes "Eu estou aqui desesperda por que meu filho não come Frutas,";
+			mes "e você deu uma Carne pra ele? Seu louco!";
+			next;
+			mes "[Mariana]";
+			mes "Nem ouse aparecer na minha frente de novo!";
+			close;
+		}
+		mes "[Mariana]";
+		mes "Morrison, filhinho, por favor...";
+		close;
+	}
+	if (morison_meat > 0) {
+		mother_marienu = 1;
+		mes "[Marianne]";
+		mes "Oh!!.... Isto...";
+		mes "O que é isso...??";
+		mes "Como você pôde fazer uma coisa dessas ao meu garoto?!";
+		next;
+		mes "[Marianne]";
+		mes "Argh! Saia da minha casa agora!";
+		close;
+	}
+	mes "[Marianne]";
+	mes "Morrison, meu filhinho, come uma frutinha, faz esse favor pra sua mamãezinha...";
+	mes "Eu não aguento mais esse menino, ele só quer saber de Carne!";
+	next;
+	mes "[Marianne]";
+	mes "Sigh~!! Tal pai, tal filho...";
+	next;
+	switch(select("Conversar:Cancelar")) {
+		mes "[Marianne]";
+		mes "*Sigh*... Este aqui é o Morrison...";
+		mes "Meu único e solitário filho";
+		next;
+		mes "[Marianne]";
+		mes "Ele se recusa a comer Frutas, olha só pra cara dele... Amarelada por falta de vitaminas...";
+		mes "Eu não consigo descobrir uma forma dele comer Frutas e Vegetais.";
+		close;
+	}
+	mes "[Marianne]";
+	mes "Morrison!! Coma essa Fruta ou te dou umas palmadas!";
+	close;
+}
+
+prt_in,47,173,3	script	Morrison#juice	4W_M_01,{
+	if (MISC_QUEST&1 || morison_meat == 15) {
+		mes "[Pequeno Morrison]";
+		mes "Dá o fora, não dê ouvidos a minha mãe maluca.";
+		close;
+	}
+	if (morison_meat > 9) {
+		mes "[Pequeno Morrison]";
+		mes "Ahh... Estou de barriga cheia agora.";
+		mes "Você não precisa me dar mais Carne, aquela já foi o suficiente.";
+		if (morison_meat == 10) {
+			next;
+			++morison_meat;
+			mes "[Pequeno Morrison]";
+			mes "Oh... e... hum.";
+			mes "pegue isto.";
+			next;
+			mes "[Pequeno Morrison]";
+			mes "São as minhas Balas favoritas, eu escondo elas da minha mãe. Hehhehehehe.";
+			close;
+			getitem 529,3; //Candy
+			getitem 530,1; //Candy_Striper
+		}
+		close;
+	}
+	mes "[Pequeno Morrison]";
+	mes "Eu já disse, não quero comer essas Frutas idiotas!.";
+	mes "Eu quero Carne!!!";
+	next;
+	if (countitem(517) > 0) {
+		switch( select( "Conversar:Mostrar a Carne:Cancelar" )) {
+			case 1:
+			mes "[Pequeno Morrison]";
+			mes "Que mãe idiota que eu tenho, fica me forçando a comer Frutas.";
+			mes "Eu odeio Frutas, elas são duras demais pros meus dentes!";
+			mes "Carnes são muito mais macias e saborosas.";
+			close;
+		case 2:
+			mes "[Pequeno Morrison]";
+			mes "Aaahh!! Carne!";
+			mes "Hmm... Eu estou com tanta fome... Você poderia me dar essa Carne?";
+			next;
+			if (select("Dar a Carne para ele:Não dar a Carne para ele") == 1) {
+				delitem 517,1; //Meat
+				++morison_meat;
+				mes "[Pequeno Morrison]";
+				mes "Finalmente! Minha mãe nunca me dá Carne pra comer!";
+				mes "Muito obrigado!";
+				close;
+			}
+			morison_meat = 15;
+			mes "[Pequeno Morrison]";
+			mes "Você é idiota como a minha mãe. Adultos, são todos iguais.";
+			close;
+		case 3:
+			mes "[Pequeno Morrison]";
+				mes "Argh!!! Vegetais são tão nojentos!";
+			close;
+		}
+	}
+	if ( select( "Conversar:Cancelar" ) == 1 ) {
+		mes "[Pequeno Morrison]";
+		mes "Que mãe idiota que eu tenho, fica me forçando a comer Frutas.";
+		mes "Eu odeio Frutas, elas são duras demais pros meus dentes!";
+		mes "Carnes são muito mais macias e saborosas.";
+		close;
+	}
+	mes "[Pequeno Morrison]";
+	mes "Argh!!! Vegetais são tão nojentos!";
+	close;
+}
+
+payon_in03,188,146,5	script	Marx Hansen#juice	4_M_04,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Ei, espere aí !! -";
+		mes "- Você não pode receber mais itens -";
+		mes "Porque está carregando muitos itens. -";
+		mes "- Por favor, alivie um pouco a sua carga e tente de novo - ";
+		close;
+	}
+	if (MISC_QUEST&1) {
+		mes "[Marxhansens, o Mercador]";
+		mes "Bem-vindo. Você veio aqui fazer Sucos?";
+		next;
+		switch( select( "Sim.:Instruções de como fazer Sucos.:Cancelar." ) ) {
+			case 1:
+				mes "[Marxhansens, o Mercador]";
+				mes "Qual Suco você quer fazer?";
+			next;
+				switch( select( "Suco de Maçã.:Suco de Banana.:Suco de Cenoura.:Suco de Uva.:Cancelar" ) ) {
+			case 1:
+				.@fruit = 512;
+				.@juice = 531;
+				break;
+			case 2:
+				.@fruit = 513;
+				.@juice = 532;
+				break;
+			case 3:
+				.@fruit = 515;
+				.@juice = 534;
+				break;
+			case 4:
+				.@fruit = 514;
+				.@juice = 533;
+				break;
+			case 5:
+				mes "[Marxhansens, o Mercador]";											
+				mes "Até mais.";
+				close;
+			}
+			if (countitem(.@fruit) == 0 || countitem(713) == 0 || Zeny < 3) {
+				mes "[Merchant Marx Hansen]";
+					mes "Ah não...";
+					mes "Você não tem todos os materiais necessários.";
+					mes "Para fazer "+getitemname(.@juice)+" eu preciso de 1 "+getitemname(.@fruit)+", 1 Garrafa Vazia e 3 Zeny por Suco.";
+				next;
+					mes "[Merchant Marx Hansen]";
+					mes "Quando você tiver tudo preparado, eu irei lhe fazer o Suco!";
+				close;
+			}
+
+		mes "[Marxhansens, o Mercador]";
+		mes "Quantas garrafas de Suco você quer?";
+		next;
+		switch( select( "Tanto quanto for possível.:Eu quero definir a quantidade.:Desistir." ) ) {
+			case 1:
+				.@make = countitem(.@fruit);
+				if (countitem(713) < .@make) .@make = countitem(713);
+				if (Zeny/3 < .@make) .@make = Zeny/3;
+				break;
+			case 2:
+				mes "[Marxhansens, o Mercador]";
+				mes "Defina um número de 1 a 100, para cancelar digite '0'.";
+				mes "Você pode fazer até " + countitem(.@fruit) + " garrafas de Suco.";
+				next;
+				while(1) {
+					input .@input;
+					if (.@input == 0) {
+						mes "[Marxhansens, o Mercador]";																									
+						mes "Até mais.";
+						close;
+					}
+					else if (.@input > 100) {
+						mes "[Marxhansens, o Mercador]";																									
+						mes "Você não pode fazer mais de 100 Sucos de uma vez.";
+						next;
+					}
+					else {
+						break;
+					}
+				}
+				.@make = .@input;
+				break;
+			case 3:
+				mes "[Marxhansens, o Mercador]";																									
+				mes "Até mais.";
+				close;
+			}
+
+			.@total_zeny = 3 * .@make;
+
+			if (countitem(.@fruit) < .@make || countitem(713) < .@make || Zeny < .@total_zeny) {
+				mes "[Marxhansens, o Mercador]";
+				mes "Eu sinto muito, você não tem todos os materiais necessários.";
+					mes "Traga-os e eu farei os Sucos.";
+				close;
+			}
+			delitem .@fruit,.@make;
+			delitem 713,.@make;
+			Zeny -= .@total_zeny;
+			getitem .@juice,.@make;
+
+				mes "[Marxhansens, o Mercador]";
+				mes "Aqui está! Suco fresquinho!";
+				mes "Até mais.";
+				close;
+			case 2:
+				mes "[Marxhansens, o Mercador]";
+				mes "Quando os humanos ainda eram nômades, eles dependiam das Frutas que achavam.";
+				mes "E com o tempo eles aprenderam fazer Sucos com elas, para conservar por mais tempo.";
+				next;
+				mes "[Marxhansens, o Mercador]";
+				mes "Agora, temos grandes hortas, e podemos ter todas as Frutas que gostaríamos.";
+				mes "Mas os Sucos continuam a ser muito importantes, por conterem apenas o que é bom da Fruta.";
+				mes "Nos Sucos, você pode aproveitar um sabor muito mais concentrado.";
+                next;
+				mes "Materiais pra se fazer Suco";
+				mes "Suco de Maçã";
+				mes "Maçã x 1, Garrafa Vazia x 1, 3 zeny.";
+				mes "";
+				mes "Suco de Banana";
+				mes "Banana x 1, Garrafa Vazia x 1, 3 zeny.";					
+				mes "";
+				mes "Suco de Cenoura";
+				mes "Cenoura x 1, Garrafa Vazia x 1, 3 zeny.";												
+				mes "";
+				mes "Suco de Uva";
+				mes "Uva x 1, Garrafa Vazia x 1, 3 zeny.";
+				close;
+			case 3:
+				mes "[Marxhansens, o Mercador]";
+				mes "Você veio até aqui por nada?";
+				close;
+		}
+	}
+	else {
+		mes "[Marxhansens, o Mercador]";
+		mes "Bem-vindo.";
+		next;
+		if (select("Conversar:Cancelar") == 1) {
+			mes "[Marxhansens, o Mercador]";
+			mes "Quando os humanos ainda eram nômades, eles dependiam das Frutas que achavam.";
+			mes "E com o tempo eles aprenderam fazer Sucos com elas, para conservar por mais tempo.";
+			next;
+			mes "[Marxhansens, o Mercador]";
+			mes "Agora, temos grandes hortas, então podemos ter todas as Frutas que gostaríamos.";
+			mes "Mas os Sucos continuam a ser muito importantes, por conterem apenas o que é bom da Fruta.";
+			mes "Nos nossos Sucos, você pode aproveitar um sabor muito mais concentrado.";
+			close;
+		}
+		mes "[Marxhansens, o Mercador]";
+		mes "Você veio até aqui por nada?";
+		close;
+	}
+}
+
+//============================================================
+// Old changelog
+//============================================================
+//= 1.1 fixed input number check [Lupus]
+//= 1.2 fixed misplaced Grape<->Carrot juices [Lupus]
+//= 1.3 added a loopless menu 'as many as possible' [Lupus]
+//= 1.3a Turned the juice making part of the Juicer npc into a
+//=     subfunc.  Changed fruit amount needed to 1.[kobra_k88]
+//=     Fixed exploits [Lupus]
+//= 1.6 fixed typo (where did @ipnut came from?) [Lance]
+//= 1.8 got rid of vars: 'MEAT',"MARIANNE","MORRISON"
+//=     From now, all common quests start using bits of the
+//=     same variable MISC_QUEST [Lupus]
+//============================================================

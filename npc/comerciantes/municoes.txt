@@ -1,0 +1,194 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script:  municoes.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/Herc/brA Dev. Team                   |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/Herc/brA: 1.1/1.1/1.1/1.0                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta,118,160,3	script	Negociador de Projéteis#alb::bdt	4_M_04,{
+	if (BaseJob == Job_Gunslinger) {
+		mes "[Tony]";
+		mes "Eu sou Tony, o negociador de projéteis.";
+		mes "Venha a mim sempre que precisar de munições.";
+		mes "Apenas me traga os materiais, e eu irei lhe fazer os projéteis que precisar.";
+		next;
+		switch(select("Esfera Venenosa:Esfera de Chamas:Esfera de Relâmpagos:Esfera Cegante:Esfera Congelante:Cancelar")) {
+		case 1: callfunc "Bullet_Trade",937,10,13205; break;
+		case 2: callfunc "Bullet_Trade",7097,2,13203; break;
+		case 3: callfunc "Bullet_Trade",7053,3,13204; break;
+		case 4: callfunc "Bullet_Trade",1024,5,13206; break;
+		case 5: callfunc "Bullet_Trade",7054,2,13207; break;
+		case 6:
+			mes "[Tony]";
+			mes "Mudou de idéia?";
+			mes "Ok, volte sempre que precisar de projéteis, estarei sempre aqui.";
+			close;
+		}
+	}
+	mes "Ei, sou Tony. Eu sou o responsável pela distribuição e fabricação de projéteis para Justiceiros.";
+	next;
+	mes "[Tony]";
+	mes "Lamento se você veio para comprar munição.";
+	mes "Eu só posso negociar com Justiceiros.";
+	close;
+}
+
+function	script	Bullet_Trade	{
+	mes "[Tony]";
+	mes "Para cada 30 "+getitemname(getarg(2))+"s, você deve me entregar 1 Emveretarcon, 1 Fracon e "+getarg(1)+" "+getitemname(getarg(0))+".";
+	next;
+	mes "[Tony]";
+	mes "Lembre-se que só posso entregar um máximo de 500 caixas de 30 projéteis por negociação.";
+	mes "Por favor entre com o número de caixas de projéteis que você gostaria.";
+	mes "Caso queira parar a negociação, apenas digite '0'.";
+	next;
+	input .@amount;
+	if (.@amount < 1 || .@amount > 500) {
+		mes "[Tony]";
+		mes "Ei, não posso lhe dar tantos projéteis.";
+		mes "Não esqueça de digitar um número menor que 500 se você quiser trocar alguns itens por alguns projéteis.";
+		close;
+	}
+	if (countitem(1010) >= .@amount && countitem(1011) >= .@amount && countitem(getarg(0)) >= (.@amount*getarg(1))) {
+		if (checkweight(getarg(2),.@amount * 30) == 0) {
+			mes "[Tony]";
+			mes "Ei? Seu inventário não possui espaço o suficiente para esta quantia de projéteis.";
+			mes "Volte quando tiver mais espaço no inventário.";
+			mes "Tente guardar algumas coisas no Armazém da Kafra.";
+			close;
+		} else {
+			mes "[Tony]";
+			mes "Muito bom, tudo parece estar em ordem.";
+			mes "Deixe-me pegar esses materiais, e aqui estão seus projéteis.";
+			mes "Foi um prazer negociar com você~";
+			delitem 1010,.@amount;
+			delitem 1011,.@amount;
+			delitem getarg(0),.@amount * getarg(1);
+			getitem getarg(2),.@amount * 30;
+			close;
+		}
+	} else {
+		mes "[Tony]";
+		mes "Hum. Parece que você não possui os materiais que necessito.";
+		mes "Bem, isso não é problema.";
+		mes "Apenas volte aqui quando pegar tudo que preciso, ok?";
+		close;
+	}
+}
+
+//===== Hercules Script ======================================
+//= Magazine Dealers
+//===== By: ==================================================
+//= rAthena Dev Team
+//===== Current Version: =====================================
+//= 1.5
+//===== Description: =========================================
+//= Turns bullets into magazines/packs.
+//===== Additional Comments: =================================
+//= 1.0 First version. [SinSloth]
+//= 1.1 Optimized version - Reduced to only one function [SinSloth]
+//= 1.2 Optimized^2, corrected npc's name [ultramage]
+//= 1.2a Optimized. Please, ommit extra NPC names [Lupus]
+//= 1.3 Updated to match AEGIS script. [Kisuka]
+//= 1.4 Updated to match AEGIS script again. [Masao]
+//= 1.5 Moved Izlude duplicate to pre-re/re paths. [Euphy]
+//============================================================
+
+alberta,118,157,3	script	Caixas de Munição::mdk	4_M_01,{
+	if (BaseJob == Job_Gunslinger) {
+		mes "Bem-vindo à minha loja de carregadores.";
+		mes "Como você sabe, um número maior de projéteis podem ser carregados mais facilmente quando estão em carregadores.";
+		mes "Agora, posso ajudá-lo em algo em particular?";
+		next;
+		switch(select("Pacote de Esferas de Relâmpago:Pacote de Esferas Cegantes:Pacote de Esferas Venenosas:Pacote de Esferas Congelantes:Pacote de Esferas de Chamas:Carregador:Carregador Sanguinário:Carregador de Prata:Cancelar")) {
+		case 1: callfunc "Func_Casing",13204,12144; break;
+		case 2: callfunc "Func_Casing",13206,12145; break;
+		case 3: callfunc "Func_Casing",13205,12146; break;
+		case 4: callfunc "Func_Casing",13207,12147; break;
+		case 5: callfunc "Func_Casing",13203,12148; break;
+		case 6: callfunc "Func_Casing",13200,12149; break;
+		case 7: callfunc "Func_Casing",13202,12150; break;
+		case 8: callfunc "Func_Casing",13201,12151; break;
+		case 9:
+			mes "[Kenny]";
+			mes "Bem, se você achar que tem muitos projéteis, venha me encontrar.";
+			mes "É uma boa idéia armazenar projéteis em Carregadores.";
+			close;
+		}
+	}
+	mes "[Kenny]";
+	mes "Bem-vindo à minha loja.";
+	mes "Aqui, eu forneço Pacotes e Carregadores para Justiceiros.";
+	mes "Desculpe, mas não parece que meus serviços serão úteis para você, aventureiro.";
+	next;
+	mes "[Kenny]";
+	mes "Hehe, mas se você conhecer algum Justiceiro, mande-o para mim.";
+	mes "Ninguém pode carregar tantos projéteis.";
+	close;
+}
+
+function	script	Func_Casing	{
+	mes "[Kenny]";
+	mes "Agora, você pode trocar 500 "+getitemname(getarg(0))+"s e 500 zeny por 1 "+getitemname(getarg(1))+".";
+	mes "Tenha certeza que você tem projéteis o suficiente e zeny para esta troca.";
+	next;
+	mes "[Kenny]";
+	mes "Você pode trocar 500 "+getitemname(getarg(0))+"s e 500 zeny por 1 "+getitemname(getarg(1))+".";
+	next;
+	mes "[Kenny]";
+	mes "Lembre-se que não posso lhe dar mais que 50 Carregadores por vez.";
+	mes "Agora digite o número de Carregadores que você quer receber.";
+	mes "Se você deseja cancelar, digite '0'.";
+	next;
+	input .@amount;
+	if (.@amount > 50 || .@amount == 0) {
+		mes "[Kenny]";
+		mes "Ei, não posso lhe dar esse número de Carregadores.";
+		mes "Por favor tente novamente, e digite um número menor que 50.";
+		close;
+	}
+	if (countitem(getarg(0)) >= (500*.@amount)) {
+		if (Zeny >= (500*.@amount)) {
+			if (checkweight(getarg(1),.@amount) == 0) {
+				mes "[Kenny]";
+				mes "Ei, você tem muito lixo no seu inventário.";
+				mes "Libere algum espaço e volte para trocar seus projéteis por alguns Carregadores depois, ok?";
+				close;
+			}
+			else{
+				mes "[Kenny]";
+				mes "Certo, aqui estão seus Carregadores.";
+				mes "Obrigado por visitar minha loja, e espero que use sua munição com sabedoria.";
+				Zeny -= 500*.@amount;
+				delitem getarg(0),500*.@amount;
+				getitem getarg(1),.@amount;
+				close;
+			}
+		} else {
+			mes "[Kenny]";
+			mes "Desculpe, mas você não tem bastante zeny para esta troca.";
+			mes "Volte a minha loja depois que você tiver um pouco mais de dinheiro.";
+			close;
+		}
+	} else {
+		mes "[Kenny]";
+		mes "Desculpe, mas você não tem bastante projetéis para esta troca.";
+		mes "Talvez você devesse conferir novamente seu Inventário.";
+		close;
+	}
+}

@@ -1,0 +1,67 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script:  leiteiro.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/Herc/brA Dev. Team                   |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/Herc/brA: 1.1/1.1/1.1/1.0                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,73,140,0	script	leiteiro	4_M_04,{
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFEspere um momento!";
+		mes "Eu não posso oferecer meu serviço";
+		mes "à você porque está";
+		mes "carregendo itens demais.";
+		mes "Volte após depositá-los na Kafra.";
+		close;
+	}
+	mes "[leiteiro]";
+	mes "Se você trouxer 1 Garrafa Vazia e 15 Zeny, eu troco por 1 Leite. O que você acha disso?";
+	next;
+	if (select("Trocar todas minhas Garrafas Vazias:Cancelar") == 1) {
+		if (countitem(713) <= 0) {
+			mes "[leiteiro]";
+			mes "Er... Eu preciso de Garrafas Vazias";
+			mes "para poder encher de leite...";
+			mes "Traga algumas e fazemos a troca, ok?";
+			close;
+		}
+		.@bottles = countitem(713);
+		.@total_weight = .@bottles * 50;
+		.@total_cost = .@bottles * 15;
+		if (Zeny < .@total_cost) {
+			mes "[leiteiro]";
+			mes "Er... Você não tem a quantia";
+			mes "Você precisa ter";
+			mes "pelo menos " + .@total_cost + " zeny.";
+			close;
+		}
+		if (MaxWeight - Weight < .@total_weight) {
+			mes "[leiteiro]";
+			mes "Hmm...";
+			mes "Você teria um pouco mais";
+			mes "de espaço antes de entregar";
+			mes "todo esse leite?";
+			close;
+		}
+		Zeny -= .@total_cost;
+		delitem 713,.@bottles; //Empty Bottles
+		getitem 519,.@bottles; //Milk
+		close;
+	}
+	close;
+}

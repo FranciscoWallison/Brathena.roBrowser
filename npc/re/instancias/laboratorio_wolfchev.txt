@@ -1,0 +1,3248 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: laboratorio wolfchev.txt               |
+//   |--------------------------------------------------------|
+//   | Criado por: Herc/brA Dev. Team                         |
+//   |--------------------------------------------------------|
+//   | Versões Herc/brA: 1.0.0/1.0.0                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Laboratório de Wolfchev                     |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0.0 Initial Release. [Kisuka]                        |
+//   | 1.0.1 Some Clean-Up and Fixes. [Euphy]                 |
+//   | 1.0.2 Fixed a small typo. [Euphy]                      |
+//   | 1.0.3 Cabeçalho brAthena e tradução. [SoulKnown]       |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+1@lhz	mapflag	src4instance
+
+lighthalzen,303,303,6	script	Giacomo Girolamo#kiup2	4_M_KHMAN,3,3,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000 Você está sobrecarregado de itens. Por favor, volte quando estiver mais leve. ^000000";
+		close;
+	}
+	if (lhz_boss > 30) {
+		if (!lght_duk01) {
+			if (Sex) {
+				emotion e_pif, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "... um rapaz...?";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "Ah! ei! Rapaz!";
+				next;
+				select("Estás bem?");
+				emotion e_what, 1;
+				mes "[Giacomo Girolamo]";
+				mes "Você já ouviu falar da terrível experiência humana cometida na Rekenber Corporation, cuja sede está localizada aqui em Lighthalzen?";
+				next;
+				select("O queee?! Experiência humana?");
+				emotion e_omg, 1;
+				mes "[Giacomo Girolamo]";
+				mes "Isso mesmo, você não compreendeu errado, experiências com humanos!";
+				mes "Há muitos rumores de que as experências são realmente verdadeiras, mas as pessoas da comunidade... não querem acreditar nisso, devido a falsa sensação de bem-estar social passado por Rekenber.";
+				next;
+				emotion e_swt2, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Bem! E as pessoas ricas parecem saber de alguma coisa, mas nunca tocam no assunto.";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "Ahh!! E este é um segredo que somente ALGUMAS PESSOAS o conhece. Eu ouvi isso da Rekenber Lab... de uma pessoa chamada... hmm... Wol...";
+				next;
+				emotion e_hmm, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "De qualquer maneira, um cientista chamado Wolf... de uma hora para outra foi demitido, e ele deve estar relacionado com esse rumor, acredito...";
+				next;
+				select("Você quer dizer... Wolfchev?");
+				emotion e_gasp, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Ohhhh?! Isso mesmo, Wolfchev... o cientista maluco...";
+				next;
+				emotion e_ok, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Suponho que você conheça melhor sobre a história... mas, estou certo de que ele está envolvido no boato.";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "A propósito... o que você pode dizer sobre isso? Existe alguma coisa que você conheça sobre ele?";
+				next;
+				if(select("Fingir que não sabe de nada.", "Dizer o que eu sei.") == 1) {
+					mes "["+strcharinfo(PC_NAME)+"]";
+					mes "Na verdade não. Eu já ouvi sobre seu nome, mas não o conheço, tão pouco conheço sua vida.";
+					next;
+					mes "[Giacomo Girolamo]";
+					mes "Hm... Você parece que está mentindo, rapaz? Hã?";
+					next;
+				} else {
+					mes "["+strcharinfo(PC_NAME)+"]";
+					mes "Ele passou muito tempo pesquisando sobre 'homunculus' de humanos, sem contar que houve um denunciante que acabou relatando as tragédias desse experimento da Corporação Rekenber, então ele foi demitido.";
+					next;
+					emotion e_no1, "Giacomo Girolamo#kiup2";
+					mes "[Giacomo Girolamo]";
+					mes "Oh! rapaz...! Você parece conhecer praticamente tudo! Por acaso, você está preocupado com a situação de Rekenber?";
+					next;
+					emotion e_dots;
+					mes "["+strcharinfo(PC_NAME)+"]";
+					mes "... .... ...";
+					next;
+				}
+				emotion e_hmm, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Não se preocupe. Não estou insinuando que você seja suspeito.";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "Bem! Só estou preocupado porque algumas pessoas da comunidade e alguns forasteiros desapareceram. E ouvi que a Rekenber estava fazendo experimentos com aquelas pessoas desaparecidas. Espero que não me interprete mal.";
+				next;
+				lght_duk01 = 1;
+				setquest 5109;
+				mes "Na verdade, não é um boato divertido.";
+				mes "Você precisa investigar os experimentos deste laboratório.";
+				close;
+			} else {
+				emotion e_lv, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Oh! Que moça bonita!!";
+				next;
+				emotion e_what, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Como uma dama tão bonita está aqui, num lugar deste tão perigoso?";
+				next;
+				switch(select("Caminhando...", "Indo embora..", "Compras..")) {
+				case 1:
+					mes "[Giacomo Girolamo]";
+					mes "Ahh... dona, você é tão graciosa, mesmo quando está só caminhando...";
+					next;
+					break;
+				case 2:
+					mes "[Giacomo Girolamo]";
+					mes "Dona, você continuará sendo uma dama digna, mesmo se sair dessa cidade pobre...";
+					next;
+					break;
+				case 3:
+					mes "[Giacomo Girolamo]";
+					mes "Ahh... Dona... realizando compras na comunidade!! Você é das que precisam passar em todas as lojas?";
+					next;
+					break;
+				}
+			}
+			select("... .... ... ....");
+			mes "[Giacomo Girolamo]";
+			mes "Bem, acredito que você está interessado no que a dona faz...";
+			next;
+			emotion e_ok, "Giacomo Girolamo#kiup2";
+			mes "[Giacomo Girolamo]";
+			mes "Só espero que a moça saia desta cidade tão perigosa, com rumores obscuros...";
+			next;
+			select("Rumores obscuros?");
+			emotion e_what, 1;
+			mes "[Giacomo Girolamo]";
+			mes "Ah... vejo que a senhorita não tem conhecimento do que passa nessa Cidade.";
+			next;
+			mes "[Giacomo Girolamo]";
+			mes "Pois bem, você precisa saber que algumas pessoas dessa comunidade e alguns aventureiros estão desaparecidos...";
+			next;
+			mes "[Giacomo Girolamo]";
+			mes "daí surgiu os rumores, já que os casos de desaparecimentos estão ocorrendo com certa frequência, e também que a Rekenber está cometendo um terrível experimento humano em seu laboratório secreto.";
+			next;
+			select("Com licença?! Experimentos humanos?");
+			emotion e_omg, 1;
+			mes "[Giacomo Girolamo]";
+			mes "Sim! Experiências com humanos!!";
+			mes "Há muitos rumores de que as experências são realmente verdadeiras, mas as pessoas da comunidade... não querem acreditar nisso, devido a falsa sensação de bem-estar social passado por Rekenber.";
+			next;
+			mes "[Giacomo Girolamo]";
+			mes "Bem! As pessoas devem saber de alguma coisa... acredito. Ah! E algumas semanas atrás, um tal de... qual nome dele? Wolfchev? Foi demitido.";
+			next;
+			mes "[Giacomo Girolamo]";
+			mes "Com isso, as pesquisas foram realizadas no laboratório. Eu acho que ele deve estar envolvido com esse rumor.";
+			next;
+			mes "[Giacomo Girolamo]";
+			mes "Então, dona. Por favor, não fique andando por este lugar tão perigoso e tudo ficará bem.";
+			next;
+			lght_duk01 = 1;
+			setquest 5109;
+			mes "... Parece um assunto muito sério a ser discutido.";
+			mes "Você precisa investigar o laboratório onde todos esses experimentos foram realizados.";
+			close;
+		} else {
+			mes "[Giacomo Girolamo]";
+			if (Sex) {
+				emotion e_paper, "Giacomo Girolamo#kiup2";
+				mes "Cuide-se e não desapareça!";
+			} else {
+				emotion e_lv2, "Giacomo Girolamo#kiup2";
+				mes "Tenha cuidado, senhorita.";
+			}
+			close;
+		}
+	} else {
+		if (Sex) {
+			emotion e_ho, "Giacomo Girolamo#kiup2";
+			mes "[Giacomo Girolamo]";
+			mes "Somente aquelas lindas senhoritas são a razão do meu viver ~!";
+			mes "Eu, Giacomo Girolamo Casanova de Seingalt nunca estive interessado em rapazes como você até agora...";
+			next;
+			emotion e_an, "Giacomo Girolamo#kiup2";
+			mes "[Giacomo Girolamo]";
+			mes "Desculpe... você precisa me dizer alguma coisa?";
+			next;
+			switch(select("Não..?", "Sobre as senhoritas.", "Você é mulherendo!!", "Te invejo...", "Qual os últimos rumores?")) {
+			case 1:
+				emotion e_hmm, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Ei, você, saia do meu caminho, então...";
+				close;
+			case 2:
+				emotion e_an, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Eu não estou a vontade para falar o quanto me divirto com minhas preciosas senhoritas. Eu converso sobre isso apenas com meus amigos.";
+				close;
+			case 3:
+				mes "[Giacomo Girolamo]";
+				mes "Ei... desculpe a rigidez!! Mas não sou 'mulherendo', sou apenas uma pessoa que aprecia a beleza das damas.";
+				next;
+				emotion e_ok, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Ahh... Sim... se eu sou mulherendo, todos os homens da terra também são! Eu sou apenas o Casanova, hahahaha.";
+				close;
+			case 4:
+				emotion e_what, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Haa... você...? Não tem nenhuma mulher, mas sua irmã e sua mãe ao seu redor?";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "... .... ...";
+				next;
+				emotion e_swt2, "Giacomo Girolamo#kiup2";
+				mes "[Giacomo Girolamo]";
+				mes "Oh...... desculpe.. compreendo, é sua particularidade....";
+				close;
+			case 5:
+				mes "[Giacomo Girolamo]";
+				mes "Você... não é como parece ser? Interessante...";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "Então, na verdade, muitas pessoas da comunidade e alguns aventureiros desapareceram, e não sabemos o motivo.";
+				next;
+				mes "[Giacomo Girolamo]";
+				mes "Você também precisa ter cuidado...";
+				close;
+			}
+		} else {
+			emotion e_what, "Giacomo Girolamo#kiup2";
+			mes "[Giacomo Girolamo]";
+			mes "Ei, moça?";
+			next;
+			mes "[Giacomo Girolamo]";
+			switch(rand(1,10)) {
+			case 1:
+				mes "Não foi doloroso quando você caiu do céu, meu anjo?";
+				next;
+				break;
+			case 2:
+				mes "Você deve estar cansada. Porque você está sempre vagando na minha mente.";
+				next;
+				break;
+			case 3:
+				mes "Você não está cansada por estar andando em meu sonho na noite passada?";
+				next;
+				break;
+			case 4:
+				mes "Com licença. Mas acho que perdi meu coração. Você pode me emprestar o seu?";
+				next;
+				break;
+			case 5:
+				mes "Você acredita em amor à primeira vista?? Ou podemos começar novamente...?";
+				next;
+				break;
+			case 6:
+				mes "Sinto muito, mas, você pode beijar uma pessoa que acabou de conhecer? Não? Está bem, então deixe-me apresentar-me.";
+				next;
+				break;
+			case 7:
+				mes "Estou tão perdido aqui já que é minha primeira vez. Você pode me informar qual é o caminho certo para seu coração?";
+				next;
+				break;
+			case 8:
+				mes "Dê-me um mapa, por favor... para conhecer o caminho... pois, estou perdido em seus olhos...";
+				next;
+				break;
+			case 9:
+				mes "Seus olhos... eu quero estar para todo o sempre neles.";
+				next;
+				break;
+			case 10:
+				mes "Eu prometo que serei o seu companheiro, em qualquer caso, em qualquer situação difícil.";
+				next;
+				break;
+			}
+			emotion e_lv2, "Giacomo Girolamo#kiup2";
+			mes "[Giacomo Girolamo]";
+			mes "Hoje é a primeira vez que nós nos encontramos, mesmo assim, eu já estou apaixonado por você, Princesa <3 ";
+			next;
+			mes "[Giacomo Girolamo]";
+			mes "Estou dizendo isso porque me preocupo com o seu bem-estar. Você precisa sair rápido desta cidade, pois, há muitos casos de desaparecimentos.";
+			close;
+		}
+	}
+
+	OnTouch:
+		if (!lght_duk01)
+			emotion (Sex ? e_pif : e_lv2), "Giacomo Girolamo#kiup2";
+		end;
+}
+
+lighthalzen,342,291,4	script	Velhinho Estranho#Bio4Reward	4_M_EINOLD,{
+	if ((MaxWeight - Weight) < 2800 || !checkweight(1201, 1)) {
+		mes "^FF0000 Verifique o seu inventário. Você possui muitos itens para realizar a missão. ^000000";
+		close;
+	}
+	mes "[Velhinho Estranho]";
+	mes "Esses jovens de hoje em dia são tão grosseiros e sem educação.";
+	next;
+	if(select("Ignore-o", "Falar com ele") == 1) {
+		mes "[Velhinho Estranho]";
+		mes "Você é um rapaz muito sem educação.";
+		close;
+	}
+	mes "["+strcharinfo(PC_NAME)+"]";
+	mes "Senhor, você está bem?";
+	next;
+	mes "[Velhinho Estranho]";
+	mes "...?? Você não é como os outros jovens. Você tem boas maneiras! Você sabe o que aconteceu comigo...?";
+	next;
+	switch(rand(1,2)) {
+	case 1:
+		mes "[Velhinho Estranho]";
+		mes "Eu estava a caminho para visitar meu filho que mora em Rune-Midgarts. É muito longe, então peguei o avião e...";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "aqueles jovens... tão barulhentos... acabei ficando de pé, pois, nenhum deles me ofereceram um lugar... e eles falavam muito alto, com isso, incomodava as pessoas.";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Eu poderia repreendê-los se eu fosse uns 10 anos mais jovem...";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Pffff... Só de pensar que o tempo passa tão rápido...";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Então, você... o que você faria?";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Em um lugar aberto e público, você deve ficar quieto até a chegada ao destino, e oferecer seu lugar para idosos e enfermos.";
+		next;
+		break;
+	case 2:
+		mes "[Velhinho Estranho]";
+		mes "Eu estava a caminho para visitar meu filho que mora em Rune Midgarts. É muito longe, então peguei o avião e...";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "aqueles jovens... tão barulhentos... acabei ficando de pé, pois, nenhum deles me ofereceram um lugar... e eles estavam falando muito alto, com isso, incomodava as pessoas.";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Eu poderia repreendê-los se eu fosse uns 10 anos mais jovem...";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Pffff... só de pensar que o tempo passa tão rápido...";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Então, você... o que você faria??";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Em um lugar aberto e público, você deve ficar quieto até a chegada ao destino, e oferecer seu lugar para idosos e enfermos.";
+		next;
+		mes "[Velhinho Estranho]";
+		mes "Não é verdade?";
+		next;
+		switch(rand(1,2)) {
+		case 1:
+			mes "[Velhinho Estranho]";
+			mes "Oh, e então! O que você diz...?";
+			next;
+			mes "[Velhinho Estranho]";
+			mes "Certa vez eu estava andando pela Cidade, e alguns meninos estavam cuspindo no chão da rua, e acabavam incomodando as meninas que ali passavam... tut tut!";
+			next;
+			mes "[Velhinho Estranho]";
+			mes "O mundo está caminhando para a selvageria... como será isso no futuro?";
+			next;
+			switch(rand(1,2)) {
+			case 1:
+				mes "[Velhinho Estranho]";
+				mes "Oh, e então! O que você diz...?";
+				next;
+				break;
+			case 2:
+				mes "[Velhinho Estranho]";
+				mes "Oh, e então! O que você diz...?";
+				next;
+				mes "[Velhinho Estranho]";
+				mes "Ultimamente, os jovens andam tão sem paciência!!!";
+				next;
+				mes "[Velhinho Estranho]";
+				mes "Muitas vezes, eles dizem que vão sair a noite, desistem fácil dos compromissos... Como eles viverão com essa mentalidade.";
+				next;
+				mes "[Velhinho Estranho]";
+				mes "Não é nada fácil encontrar um emprego, além do mais, quando encontra uma vaga, é difícil ser contratado. Os jovens não conseguem ficar uma semana e já desistem.";
+				next;
+				mes "[Velhinho Estranho]";
+				mes "O quão são impacientes e irresponsáveis!";
+				next;
+				mes "[Velhinho Estranho]";
+				mes "Oh, e então! O que você diz...?";
+				next;
+				break;
+			}
+		case 2:
+			mes "[Velhinho Estranho]";
+			mes "Oh, e então! O que você diz...?";
+			next;
+			break;
+		}
+	}
+	mes "^E7A43DO velhinho estranho disse repetidamente^000000";
+	next;
+	mes "[Velhinho Estranho]";
+	mes "Hm... você não é parecido com os demais jovens, você me parece muito paciente. Eu gosto disso!";
+	next;
+	mes "[Velhinho Estranho]";
+	mes "Agora eu sou apenas um homem velho e fraco, mas quando eu era jovem, eu era um comerciante famoso da Cidade.";
+	next;
+	mes "[Velhinho Estranho]";
+	mes "Já faz um tempo desde que parei com os negócios, mas um ex-cliente contatou-me e me perguntou...";
+	next;
+	mes "[Velhinho Estranho]";
+	mes "Se eu pudesse ir em busca de alguns itens pouco conhecidos, como 'Vontade do Guerreiro', 'Sede de Sangue', 'Frio dos Mortos'.";
+	next;
+	mes "[Velhinho Estranho]";
+	mes "Gostei da sua cortesia que não é como a maioria dos jovens, então, se você me pagar, eu ousarei dar-lhe alguns pertences, melhor dizendo, coisas que considero meus tesouros.";
+	next;
+	while(1) {
+		switch(select("Quando eu coletar, volto aqui", "Mostre-me as armaduras", "Mostre-me as armas")) {
+		case 1:
+			mes "[Velhinho Estranho]";
+			mes "Está bem, jovem. Até logo.";
+			close;
+		case 2:
+			mes "[Velhinho Estranho]";
+			mes "Então, você está interessado em armaduras.";
+			next;
+			mes "[Velhinho Estranho]";
+			mes "Estas são as armaduras que tenho.";
+			next;
+			for(.@i = 1; .@i < 8; .@i++) {
+				if(((.@i == 1 || .@i == 5) && (countitem(Will_Of_Warrior) >= 100) && (countitem(Blood_Thirst) >= 50) && (countitem(Goast_Chill) >= 35)) ||
+				((.@i == 2 || .@i == 3) && (countitem(Will_Of_Warrior) >= 100) && (countitem(Blood_Thirst) >= 50) && (countitem(Goast_Chill) >= 22)) ||
+				((.@i == 4 || .@i == 7) && (countitem(Will_Of_Warrior) >= 300) && (countitem(Blood_Thirst) >= 300) && (countitem(Goast_Chill) >= 400)) ||
+				((.@i == 6) && (countitem(Will_Of_Warrior) >= 100) && (countitem(Blood_Thirst) >= 50) && (countitem(Goast_Chill) >= 30))) {
+					.@armor$[.@i] = "^0000FF";
+				} else {
+					.@armor$[.@i] = "^FF0000";
+				}
+			}
+			while(1) {
+				switch(select(
+					"Mostre-me outros itens.",
+					""+.@armor$[1]+"Escudo Gigante^000000",
+					""+.@armor$[2]+"Livro Antigo de Geffenia - Água^000000",
+					""+.@armor$[3]+"Bíblia da Promessa (Volume 2)^000000",
+					""+.@armor$[4]+"Capa Recuperada^000000",
+					""+.@armor$[5]+"Manoplas de Sicário^000000",
+					""+.@armor$[6]+"Bata de Operação Verde^000000",
+					""+.@armor$[7]+"Decoração Dourada Antiga^000000"
+				)) {
+				case 1:
+					mes "[Velhinho Estranho]";
+					mes "Dê uma olhada.";
+					next;
+					.@break = 1;
+					break;
+				case 2:
+					mes "<<Escudo Gigante[1]>>";
+					mes "Reduz em 5% o dano de monstros grandes, mais 5% ao aprimorar até o nível 9.";
+					mes "Escudo / Defesa 130 / Peso 280 / Nível Necessário 100 / Slote 1 / Cavaleiro Rúnico e Guardião Real";
+					callsub L_Reward, Giant_Shield, 100, 50, 35;
+					break;
+				case 3:
+					mes "<<Livro Antigo de Geffenia - Água[1]>>";
+					mes "INT + 1, DEFM + 2. Se a INT de base for 120 , ATQM + 10 e HP máximo + 800.";
+					mes "Ao equipar-se com o Bastão de Lágrimas, a conjuração de Esquife de Gelo, Zero Absoluto e Nevasca será reduzida 4 vezes mais do que o nível de refinamento do escudo.";
+					mes "Escudo / Defesa 30 / Peso 100 / Nível Necessário 100 / Slote 1 / Arcano";
+					callsub L_Reward, Geffenia_Book_Water, 100, 50, 22;
+					break;
+				case 4:
+					mes "<<Bíblia da Promessa (Volume 2)[1]>>";
+					mes "DEFM +5, permite que o usuário lance Poder de Odin nível 2, que aumenta o ATQ e ATQM em 100 e reduz a DEF e DEFM em 40.";
+					mes "Aumenta em 5% a eficiência de Cura, Santuário e Arremessar Poção.";
+					mes "Escudo / Defesa 20 / Peso 50 / Nível Necessário 140 / Slote 1 / Arcebispo";
+					callsub L_Reward, Bible_Of_Promise2, 100, 50, 22;
+					break;
+				case 5:
+					mes "<<Capa Recuperada[0]>>";
+			        mes "Permite usar Troca de Pele Nv. 1. Aumenta o tempo de espera dessa habilidade em 30 segundos, dobra o consumo de SP de todas as habilidades quando vestido; ao retirar, SP - 1.200.";
+					mes "Capa / Defesa 1 / Peso 40 / Nível Necessário 130 / Slote 0 / Arcano e Arcebispo";
+					callsub L_Reward, Salvage_Cape, 300, 300, 400;
+					break;
+				case 6:
+					mes "<<Manoplas de Sicário[1]>>";
+			        mes "SP máximo + 20, Crítico + 3.";
+			        mes "Quando usado junto com Krishna, ATQ + 50, aumenta em 50% o poder de ataque das Lâminas Destruidoras e Esquiva - 30.";
+			        mes "Ao ser usado junto com Chakram, Crítico + 4, poder de ataque crítico aumentado em 40% e HP máximo - 10%.";
+					mes "Acessório / Defesa 3 / Peso 40 / Nível Necessário 100 / Slote 1 / Sicário";
+					callsub L_Reward, Assassin_Handcuffs, 100, 50, 35;
+					break;
+				case 7:
+					mes "<<Bata de Operação Verde[1]>>";
+			        mes "DES + 1, SP máximo + 30.";
+			        mes "Ao usar o Bisturi para caçar monstros Humanoides e Brutos, há chance de derrubar Coração Imortal e Álcool de acordo com o nível de refinamento do traje.";
+					mes "Armadura / Defesa 66 / Peso 66 / Nível Necessário 100 / Slote 1 / Bioquímico";
+					callsub L_Reward, Green_Operation_Coat, 100, 50, 30;
+					break;
+				case 8:
+					mes "<<Decoração Dourada Antiga>>";
+			        mes "Se o nível de base for 150, todos os atributos + 2.";
+			        mes "ATQ + 8% para classes de Espadachim, Mercador e Gatuno.";
+			        mes "ATQM + 8% e poder de cura + 7% para classes de Mago e Noviço.";
+			        mes "DES + 3 e poder de ataque a distância + 10% para classes de Arqueiro.";
+					mes "Cabeça / Defesa 7 / Topo / Peso 40 / Nível Necessário 100 / Slote 1 / Somente para 3ª classe ";
+					callsub L_Reward, Ancient_Gold_Deco, 300, 300, 400;
+					break;
+				}
+				if(.@break)
+					break;
+			}
+		case 3:
+			mes "[Velhinho Estranho]";
+			mes "Então, você está interessado em armas.";
+			next;
+			mes "[Velhinho Estranho]";
+			mes "Estas são as armas que tenho.";
+			next;
+			for(.@i = 1; .@i < 15; .@i++) {
+				if(((.@i == 1) && (countitem(Will_Of_Warrior) >= 50) && (countitem(Blood_Thirst) >= 100) &&
+				(countitem(Goast_Chill) >= 10)) ||
+				((.@i == 2) && (countitem(Will_Of_Warrior) >= 50) && (countitem(Blood_Thirst) >= 100) &&
+				(countitem(Goast_Chill) >= 85)) ||
+				((.@i == 3 || .@i == 4 || (.@i >= 8 && .@i < 11) || .@i >= 12) && (countitem(Will_Of_Warrior) >= 50) &&
+				(countitem(Blood_Thirst) >= 100) && (countitem(Goast_Chill) >= 35)) ||
+				((.@i == 5 || .@i == 7 || .@i == 11) && (countitem(Will_Of_Warrior) >= 50) && (countitem(Blood_Thirst) >= 100)
+				&& (countitem(Goast_Chill) >= 40)) ||
+				((.@i == 6) && (countitem(Will_Of_Warrior) >= 300) && (countitem(Blood_Thirst) >= 300) &&
+				(countitem(Goast_Chill) >= 400))) {
+						.@weapon$[.@i] = "^0000FF";
+				} else {
+						.@weapon$[.@i] = "^FF0000";
+				}
+		  	}
+			while(1) {
+				switch(select(
+					"Mostre-me outros itens.",
+					""+.@weapon$[1]+"Katar de Agente^000000",
+					""+.@weapon$[2]+"Katar do Sicário^000000",
+					""+.@weapon$[3]+"Aço Ígneo^000000",
+					""+.@weapon$[4]+"Sectora Final^000000",
+					""+.@weapon$[5]+"Lança-canhão^000000",
+					""+.@weapon$[6]+"Lança Gigante^000000",
+					""+.@weapon$[7]+"Livro de Feitiços do Frio^000000",
+					""+.@weapon$[8]+"Luz da Recuperação^000000",
+					""+.@weapon$[9]+"Garra Celeste^000000",
+					""+.@weapon$[10]+"Garra Escarlate^000000",
+					""+.@weapon$[11]+"Cruz Sangrenta^000000",
+					""+.@weapon$[12]+"Catapulta^000000",
+					""+.@weapon$[13]+"Besta Grande^000000",
+					""+.@weapon$[14]+"Arco de Trepadeiras^000000"
+				)) {
+				case 1:
+					mes "[Velhinho Estranho]";
+					mes "Dê uma olhada.";
+					next;
+					.@break = 1;
+					break;
+				case 2:
+					mes "<<Katar de Agente[1]>>";
+			        mes "Aumenta a taxa de Acerto dependendo da Sorte de base.";
+					mes "Katar / Ataque 170 / Peso 120 / Nível da arma 3 / Nível Necessário 100 / Slote 1 / Sicário";
+					callsub L_Reward, Agent_Katar, 50, 100, 10;
+					break;
+				case 3:
+					mes "<<Katar do Sicário[1]>>";
+			        mes "DES + 2, Esquiva - 30.";
+			        mes "Aumenta o dano contra monstros Humanoides em 50%.";
+			        mes "Aumenta o dano de Lâminas Retalhadoras em 30%.";
+					mes "Katar / Ataque 200 / Peso 150 / Nível da arma 4 / Nível Necessário 140 / Slote 1 / Sicário";
+					callsub L_Reward, Guillotine_Katar, 50, 100, 85;
+					break;
+				case 4:
+					mes "<<Aço Ígneo[1]>>";
+			        mes "Ao atacar fisicamente, chance de causar [Incêndio] nos oponentes e no usuário.";
+			        mes "Indestrutível.";
+					mes "Machado de Duas Mãos / Ataque 250 / Peso 190 / Elemento Fogo / Nível da Arma 4 / Nível Necessário 95 / Slote 1 / Espadachim T. e Mercador T. e suas evoluções";
+					callsub L_Reward, Ygnus_Stale, 50, 100, 35;
+					break;
+				case 5:
+					mes "<<Sectora Final[1]>>";
+			        mes "Um machado feito com gelo do ártico.";
+			        mes "Ao atacar fisicamente, chance de causar [Cristalização] nos oponentes e no usuário.";
+			        mes "Indestrutível.";
+					mes "Machado de Duas Mãos / Ataque 250 / Peso 190 / Elemento Água / Nível da Arma 4 / Nível Necessário 95 / Slote 1 / Espadachim T. e Mercador T. e suas evoluções";
+					callsub L_Reward, End_Sektura, 50, 100, 35;
+					break;
+				case 6:
+					mes "<<Lança-canhão[1]>>";
+			        mes "Diminui o SP máximo em 100.";
+			        mes "Aumenta o dano do Disparo perfurante em 10%, com um aumento no poder de ataque correspondente a 3 vezes o nível de refinamento.";
+					mes "Lança de Duas Mãos / Ataque 180 / Peso 160 / Nível da Arma 4 / Nível Necessário 100 / Slote 1 / Guardião Real";
+					callsub L_Reward, Cannon_Spear, 50, 100, 40;
+					break;
+				case 7:
+					mes "<<Lança Gigante[0]>>";
+			        mes "ATQM + 160, DES + 1.";
+			        mes "Aumenta o dano dos feitiços Pó de Diamante e Lanças de Gelo 3 vezes mais do que o nível de refinamento ";
+			        mes "Também aumenta o consumo de SP 3 vezes mais do que o nível de refinamento";
+					mes "Lança de Duas Mãos / Ataque 20 / Peso 2000 / Nível da Arma 4 / Nível Necessário 140 / Slote 0 / Cavaleiro Rúnico";
+					callsub L_Reward, Giant_Lance, 300, 300, 400;
+					break;
+				case 8:
+					mes "<<Livro de Feitiços do Frio[2]>>";
+			        mes "VelATQ - 10; ao retirar o equipamento, SP - 600.";
+			        mes "Mais 20 segundos de espera para voltar a usar a Espiral de Colisão.";
+			        mes "Se a FOR de base for maior que 120, ATQ + 300.";
+					mes "Livro / Ataque 100 / Peso 140 / Elemento Água / Nível da Arma 4 / Nível Necessário 100 / Slote 2 / Feiticeiros";
+					callsub L_Reward, Chilly_Spell_Book, 50, 100, 40;
+					break;
+				case 9:
+					mes "<<Luz da Recuperação[1]>>";
+			        mes "ATQM + 160.";
+			        mes "Um cajado que aumenta a potência das habilidades de cura do Arcebispo, aumentando o consumo de SP da habilidade Cura dependendo do nível de refinamento.";
+			        mes "Indestrutível.";
+					mes "Cajado de Uma Mão / Ataque 30 / Peso 40 / Elemento Sagrado / Nível da Arma 4 / Nível Necessário 110 / Slote 1 / Arcebispo";
+					callsub L_Reward, Recovery_Light, 50, 100, 35;
+					break;
+				case 10:
+					mes "<<Garra Celeste[0]>>";
+			        mes "ATQM + 80.";
+			        mes "Tem chance de causar Congelamento com ataque físico; a chance aumenta a cada nível de refinamento.";
+					mes "Adaga / Ataque 160 / Peso 50 / Elemento Vento / Nível da Arma 4 / Nível Necessário 110 / Slote 0 / Aprendiz T., Espadachim T., Mercador T., Gatuno T. e suas respectivas evoluções";
+					callsub L_Reward, Aztoe_Nail, 50, 100, 35;
+					break;
+				case 11:
+					mes "<<Garra Escarlate[0]>>";
+			        mes "ATQM +80.";
+			        mes "Chance de Petrificar o inimigo ao realizar ataques de curta distância. Aumenta a chance de Petrificar dependendo do seu nível de refinamento.";
+					mes "Adaga / Ataque 160 / Peso 50 / Elemento Fogo / Nível da Arma 4 / Nível Necessário 110 / Slote 0 / Aprendiz T., Espadachim T., Mercador T., Gatuno T. e suas respectivas evoluções";
+					callsub L_Reward, Scarletto_Nail, 50, 100, 35;
+					break;
+				case 12:
+					mes "<<Cruz Sangrenta[0]>>";
+			        mes "Uma maça de cruz vermelho-sangue com um poder sombrio. A cor vermelha é tão assustadora que parece que a arma absorve o sangue.";
+			        mes "Em um ataque físico de curta distância, há chance de lançar Chamas de Hela Nv. 1. A velocidade de conjuração da habilidade é aumentada de acordo com o nível de refinamento.";
+					mes "Maça / Ataque 170 / Peso 150 / Elemento Sombrio / Nível da Arma 4 / Nível Necessário 100 / Slote 0 / Transcendentais de Noviço";
+					callsub L_Reward, Bloody_Cross, 50, 100, 40;
+					break;
+				case 13:
+					mes "<<Catapulta[2]>>";
+					mes "Aumenta o dano e o consumo de SP do Disparo Triplo dependendo do nível de refinamento.";
+					mes "Arco / Ataque 150 / Peso 110 / Nível da Arma 4 / Nível Necessário 100 / Slote 2 / Renegado";
+					callsub L_Reward, Catapult, 50, 100, 35;
+					break;
+				case 14:
+					mes "<<Besta Grande[2]>>";
+                    mes "Um arco bastante sensível, voltado para fuzilaria.";
+			        mes "Aumenta o dano da Tempestade de Flechas 5 vezes mais do que o nível de refinamento, além de aumentar o consumo de SP dessa habilidade. Se a AGI de base for 120, VelATQ + 1.";
+					mes "Arco / Ataque 160 / Peso 90 / Nível da Arma 4 / Nível Necessário 110 / Slote 2 / Sentinela";
+					callsub L_Reward, Big_CrossBow, 50, 100, 35;
+					break;
+				case 15:
+					mes "<<Arco de Trepadeiras[2]>>";
+			        mes "DES + 1.";
+			        mes "Em um ataque físico, há chance de lançar Prisão de Teia Nv. 1. É necessário possuir o item Teia de Aranha no inventário.";
+					mes "Arco / Ataque 150 / Peso 150 / Nível da Arma 3 / Nível Necessário 120 / Slote 2 / Sentinela, Trovador e Musa";
+					callsub L_Reward, Creeper_Bow, 50, 100, 35;
+					break;
+				}
+				if(.@break)
+					break;
+			}
+		}
+	}
+
+	L_Reward:
+		next;
+		mes ""+getarg(1)+" Vontade do Guerreiro, "+getarg(2)+" Sede de Sangue, "+getarg(3)+" Frio dos Mortos, são os itens necessários para realizar a troca.";
+		next;
+		if(countitem(Will_Of_Warrior) >= getarg(1) && countitem(Blood_Thirst) >= getarg(2) && countitem(Goast_Chill) >= getarg(3)) {
+			if(select("Cancelar a troca", "Realizar a troca") == 1) {
+				mes "[Velhinho Estranho]";
+				mes "Está bem...";
+				close;
+			}
+			emotion e_swt2, "Velhinho Estranho#Bio4Reward";
+			progressbar "FF00FF", 2;
+			delitem Will_Of_Warrior, getarg(1);
+			delitem Blood_Thirst, getarg(2);
+			delitem Goast_Chill, getarg(3);
+			getitem getarg(0), 1;
+			mes "[Velhinho Estranho]";
+			mes "Ai está o seu item. Você pode me visitar todas as vezes que desejar.";
+			close;
+		}
+		return;
+}
+
+lhz_cube,233,24,4	script	Feiticeiro#Bio4Reward	4_M_UMDANCEKID,{
+	if ((MaxWeight - Weight) < 1200 || !checkweight(1201, 1)) {
+		mes "^FF0000 Você está sobrecarregado de itens. Por favor, volte quando estiver mais leve. ^000000";
+		close;
+	}
+	disable_items;
+	mes "[Pudding]";
+	mes "... .... ...";
+	next;
+	switch(select("Umba umba humbaa", "O que você está fazendo aqui?", "Quais são os equipamentos encontratos até agora?", "Aqui está, Senhor.")) {
+	case 1:
+		emotion e_an;
+		mes "[Pudding]";
+		mes "Ei, desculpe-me, mas não sou da Umbala! Você é tão grosseiro.";
+		close2;
+		enable_items;
+		end;
+	case 2:
+		mes "[Pudding]";
+		mes "Como você pode ver, sou um feiticeiro de treinamento, e meu nome é Pudim.";
+		next;
+		select("....?");
+		emotion e_an;
+		mes "[Pudding]";
+		mes "... Que cara é essa? Estou começando a ficar desconfortável...";
+		next;
+		emotion e_ok;
+		mes "[Pudding]";
+		mes "Alguns dias atrás, enquanto eu estava ministrando minhas aulas, senti algo estranho e muito bizarro. Então, eu segui isso que acabou me trazendo aqui.";
+		next;
+		select("Compreendo.");
+		mes "[Pudding]";
+		mes "Está bem, deixe-me continuar. É tão desagradável as vezes que você fica me interrompendo enquanto falo.";
+		next;
+		mes "[Pudding]";
+		mes "Então, eu acabei entrando no laboratório para investigar os rumores, e ai, Deus! Eu encontrei aqueles monstros que eram parecidos com Doppelgangers da 'Caverna de Geffen'. Estava repleto deles.";
+		next;
+		mes "[Pudding]";
+		mes "E por causa desses monstros, acabei encontrando itens raros como '^F2766EVontade do Guerreiro^000000' '^952420Sede de Sangue^000000' '^88C6F7Frio dos Mortos^000000'. Acaba sendo impossível encontrar esses itens em outro lugar.";
+		next;
+		emotion e_what, "Feiticeiro#Bio4Reward";
+		mes "[Pudding]";
+		mes "E depois de muitas horas de pesquisas por conta própria, eu finalmente descobri uma maneira de usar esses itens. Você quer saber?";
+		next;
+		switch(select("Oh....perdão?!", "Sem dúvida, diga-me por favor.")) {
+		case 1:
+			emotion e_omg, 1;
+			emotion e_an, "Feiticeiro#Bio4Reward";
+			mes "[Pudding]";
+			mes "Oh meu! Você está no mundo da lua? Bem, de qualquer maneira estou com preguiça para explicar tudo novamente, então vou continuar.";
+			next;
+			break;
+		case 2:
+			emotion e_heh, "Feiticeiro#Bio4Reward";
+			mes "[Pudding]";
+			mes "Bom, estou contente por estar prestando atenção nas minhas explicações. Então, vou continuar a explicando.";
+			next;
+			break;
+		}
+		mes "[Pudding]";
+		mes "Essa '^F2766EVontade do Guerreiro^000000' e '^952420Sede de Sangue^000000'..... são materiais muito quentes.";
+		next;
+		mes "[Pudding]";
+		mes "Sendo assim, '^F2766EVontade do Guerreiro^000000' emana um poder especial, possível colocar em 4 slotes de um equipamento,";
+		next;
+		mes "[Pudding]";
+		mes "e '^952420Sede de Sangue^000000' podendo emanar poder de 3 slotes para um equipamento.";
+		next;
+		mes "[Pudding]";
+		mes "Enquanto isso!!!";
+		mes "'^88C6F7Frio dos Mortos^000000' é um tipo de material frio.";
+		mes "E acaba permitindo retirar os poderes especiais da'^F2766EVontade do Guerreiro^000000' e '^952420Sede de Sangue^000000' retornando o equipamento à estaca 'ZERO'.";
+		next;
+		mes "[Pudding]";
+		mes "O que você me diz? Não lhe parece interessante? Mas, há um problema...";
+		next;
+		mes "[Pudding]";
+		mes "Como esses materiais só podem ser encontrados nos monstros que vivem no Laboratório, o poder especial também só pode ser inserido em certos equipamentos obtidos naquele mesmo lugar.";
+		next;
+		select("Então, qual a conclusão disso tudo?");
+		emotion e_what, 1;
+		emotion e_an;
+		mes "[Pudding]";
+		mes "Gee... Eu lhe disse para não me interromper enquanto eu falo, não? Bem, digo que tudo isso, é importante.";
+		next;
+		mes "[Pudding]";
+		mes "Se você me trazer 10 '^F2766EVontade do Guerreiro^000000' ou 10 '^952420Sede de Sangue^000000', eu poderei distribuir certos encantamentos nos equipamentos que você encontrar no Laboratório.";
+		next;
+		mes "[Pudding]";
+		mes "Agora, se você não estiver satisfeito com os encantamentos, traga-me 10 '^88C6F7Frio dos Mortos^000000', e eu os retirarei para você.";
+		next;
+		mes "[Pudding]";
+		mes "O que você me diz? Tendo ambas as opções... muito legal, heim?";
+		next;
+		mes "[Pudding]";
+		mes "Se você reunir '^F2766EVontade do Guerreiro^000000' ou '^952420Sede de Sangue^000000', e coletar os equipamentos que sejam capazes de aceitar o encantamento especial, traga-os para mim. Eu estarei esperando.";
+		close2;
+		enable_items;
+		end;
+	case 3:
+		mes "[Pudding]";
+		mes "Hm... Os equipamentos que foram descobertos até hoje são...";
+		next;
+		mes "- Checagem -";
+		mes "Pudim tirou algum papel do bolso.";
+		next;
+		mes "[Pudding]";
+		mes "Deixe-me ver... os equipamentos descobertos até agora são...";
+		mes "6 Armaduras e 14 Armas.";
+		next;
+		while(1) {
+			switch(select("Está bem, já estou satisfeito.", "6 Armaduras?", "14 Armas?")) {
+			case 1:
+				mes "[Pudding]";
+				mes "Se você reunir '^F2766EVontade do Guerreiro^000000' ou '^952420Sede de Sangue^000000', e coletar os equipamentos que sejam capazes de aceitar o encantamento especial, traga-os para mim. Eu estarei esperando.";
+				close2;
+				enable_items;
+				end;
+			case 2:
+				mes "< Lista de Itens >";
+				mes "Escudo Gigante[1]";
+				mes "Livro Antigo de Geffenia - Água[1]";
+				mes "Bíblia da Promessa (Volume 2)[1]";
+				mes "Capa Recuperada[0]";
+				mes "Manoplas de Sicário[1]";
+				mes "Bata de Operação Verde[1]";
+				mes "Decoração Dourada Antiga[1]";
+				next;
+				mes "[Pudding]";
+				mes "Até o momento, estas são as armaduras encontradas. Você pretende ver alguma outra coisa?";
+				next;
+				break;
+			case 3:
+				mes "< Lista de Itens >";
+				mes "Katar de Agente[1]";
+				mes "Katar do Sicário[1]";
+				mes "Aço Ígneo[1]";
+				mes "Sectora Final[1]";
+				mes "Lança-canhão[1]";
+				mes "Lança Gigante[0]";
+				mes "Livro de Feitiços do Frio[2]";
+				mes "Luz da Recuperação[1]";
+				mes "Garra Celeste[0]";
+				mes "Garra Escarlate[0]";
+				mes "Cruz Sangrenta[0]";
+				mes "Catapulta[2]";
+				mes "Besta Grande[2]";
+				mes "Arco de Trepadeiras[2]";
+				next;
+				mes "[Pudding]";
+				mes "Até o momento, estas são as armas encontradas. Você pretende ver alguma outra coisa?";
+				next;
+				break;
+			}
+		}
+	case 4:
+		emotion e_flash;
+		mes "[Pudding]";
+		mes "Ohhhhh, você os trouxe?";
+		next;
+		break;
+	}
+	mes "[Pudding]";
+	mes "ESTÁ BEM! Em que equipamento você deseja atribuir o encantamento especial?";
+	next;
+	setarray .@parts[0], EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_TOP;
+	for(.@i = 0; .@i < 7; .@i++) {
+		if(!getequipisequiped(.@parts[.@i])) {
+			switch(.@i) {
+				case 0:
+					.@equipped$[.@i] = "^999999Armadura-[Não equipado]^000000";
+					break;
+				case 1:
+					.@equipped$[.@i] = "^999999Mão Esquerda-[Não equipado]^000000";
+					break;
+				case 2:
+					.@equipped$[.@i] = "^999999Mão Direita-[Não equipado]^000000";
+					break;
+				case 3:
+					.@equipped$[.@i] = "^999999Capa-[Não equipado]^000000";
+					break;
+				case 4:
+					.@equipped$[.@i] = "^999999Acessório-[Não equipado]^000000";
+					break;
+				case 5:
+					.@equipped$[.@i] = "^999999Acessório-[Não equipado]^000000";
+					break;
+				case 6:
+					.@equipped$[.@i] = "^999999Cabeça-[Não equipado]^000000";
+					break;
+			}
+		} else {
+			.@equipped$[.@i] = getequipname(.@parts[.@i]);
+		}
+	}
+	switch(select("I changed my mind.", .@equipped$[0], .@equipped$[1], .@equipped$[2], .@equipped$[3], .@equipped$[4],
+	.@equipped$[5], .@equipped$[6])) {
+	case 1:
+		mes "[Pudding]";
+		mes "Bem, eu estava ansioso em ajudá-lo, mas não poderei continuar.";
+		close2;
+		enable_items;
+		end;
+	case 2:
+		if(!getequipisequiped(EQI_ARMOR)) {
+		  mes "[Pudding]";
+		  mes "Ei... Cadê sua armadura?";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_ARMOR;
+		break;
+	case 3:
+		if(!getequipisequiped(EQI_HAND_L)) {
+		  mes "[Pudding]";
+		  mes "Bem... Você não tem nada equipado na mão esquerda.";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_HAND_L;
+		break;
+	case 4:
+		if(!getequipisequiped(EQI_HAND_R)) {
+		  mes "[Pudding]";
+		  mes "Bem... Você não tem nada equipado na mão direita.";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_HAND_R;
+		break;
+	case 5:
+		if(!getequipisequiped(EQI_GARMENT)) {
+		  mes "[Pudding]";
+		  mes "Hm... Onde está sua capa?";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_GARMENT;
+		break;
+	case 6:
+		if(!getequipisequiped(EQI_ACC_L)) {
+		  mes "[Pudding]";
+		  mes "... Onde está seu acessório?";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_ACC_L;
+		break;
+	case 7:
+		if(!getequipisequiped(EQI_ACC_R)) {
+		  mes "[Pudding]";
+		  mes "... Onde está seu acessório?";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_ACC_R;
+		break;
+	case 8:
+		if(!getequipisequiped(EQI_HEAD_TOP)) {
+		  mes "[Pudding]";
+		  mes "Ei... Você não tem nada equipado na cabeça?";
+		  close2;
+		  enable_items;
+		  end;
+		}
+		.@position = EQI_HEAD_TOP;
+		break;
+	}
+	.@refine_count = getequiprefinerycnt(.@position);
+	.@equip_item = getequipid(.@position);
+	.@lhz_max_num = 4000;
+	if(.@equip_item == Agent_Katar || .@equip_item == Guillotine_Katar || .@equip_item == Ygnus_Stale ||
+	.@equip_item == End_Sektura || .@equip_item == Cannon_Spear || .@equip_item == Giant_Lance ||
+	.@equip_item == Aztoe_Nail || .@equip_item == Scarletto_Nail || .@equip_item == Bloody_Cross) {
+	  .@type = 1;
+	  if(.@equip_item == Giant_Lance)
+		.@lhz_max_num = 4200;
+	} else if (.@equip_item == Catapult || .@equip_item == Big_CrossBow || .@equip_item == Creeper_Bow) {
+		.@type = 2;
+	} else if (.@equip_item == Chilly_Spell_Book || .@equip_item == Recovery_Light) {
+		.@type = 3;
+	} else if (.@equip_item== Giant_Shield || .@equip_item == Geffenia_Book_Water || .@equip_item == Bible_Of_Promise2 ||
+	.@equip_item == Salvage_Cape || .@equip_item == Assassin_Handcuffs || .@equip_item == Green_Operation_Coat ||
+	.@equip_item == Ancient_Gold_Deco) {
+		.@type = 4;
+		if(.@equip_item == Salvage_Cape || .@equip_item == Ancient_Gold_Deco)
+			.@lhz_max_num = 4200;
+	} else {
+		mes "[Pudding]";
+		mes "Antes de continuar, eu preciso certificar que esse equipamento é compatível com o encantamento especial";
+		next;
+		specialeffect2 EF_SPHERE;
+		progressbar "ffff00", 2;
+		specialeffect2 EF_SUI_EXPLOSION;
+		emotion e_sob;
+		mes "[Pudding]";
+		mes "Hm.. Sinto muito, este equipamento é incompatível com os encantamentos da '^F2766EVontade do Guerreiro^000000' e '^952420Sede de Sangue^000000'.";
+		close2;
+		enable_items;
+		end;
+	}
+	emotion e_ho;
+	mes "[Pudding]";
+	mes "Ohhh... Este equipamento pode aceitar o encantamento especial da '^F2766EVontade do Guerreiro^000000' ou '^952420Sede de Sangue^000000'.";
+	next;
+	if (countitem(Will_Of_Warrior) >= 10)
+		.@menu_in$[1] = "Continuar com o poder '^F2766EVontade do Guerreiro^000000'";
+	else
+		.@menu_in$[1] = "Não há ^999999'Vontade do Guerreiro'^000000 suficiente";
+
+	if (countitem(Blood_Thirst) >= 10)
+		.@menu_in$[2] = "Continuar com o poder '^952420Sede de Sangue^000000'";
+	else
+		.@menu_in$[2] = "Não há ^999999'Sede de Sangue'^000000 suficiente";
+
+	if (countitem(Goast_Chill) >= 10)
+		.@menu_in$[3] = "Consumir '^88C6F7Frio dos Mortos^000000'";
+	else
+		.@menu_in$[3] = "Não há ^999999'Frio dos Mortos'^000000 suficiente";
+	mes "[Pudding]";
+	mes "ESTÁ BEM! Qual encantamento você deseja trabalhar em seu equipamento?";
+	next;
+	switch(select("Eu disse não! Eu não preciso disso!", .@menu_in$[1], .@menu_in$[2], .@menu_in$[3])) {
+		case 1:
+			mes "[Pudding]";
+			mes "Ohhh... Eu estava ansioso para fazê-lo, mas tudo depende da sua escolha...";
+			close2;
+			enable_items;
+			end;
+		case 2:
+			if (countitem(Will_Of_Warrior) < 10) {
+				mes "[Pudding]";
+				mes "Não há '^F2766EVontade do Guerreiro^000000' suficiente, você precisa me trazer 10 '^F2766EVontade do Guerreiro^000000'";
+				close2;
+				enable_items;
+				end;
+			}
+			else if (getequipcardid(.@position, 3) > 0) {
+				mes "[Pudding]";
+				mes "Já trabalhei neste equipamento com '^F2766EVontade do Guerreiro^000000'.";
+				close2;
+				enable_items;
+				end;
+			} else {
+				.@socket_type = 4;
+			}
+			break;
+		case 3:
+			if (countitem(Blood_Thirst) < 10) {
+				mes "[Pudding]";
+				mes "Não há '^952420Sede de Sangue^000000' suficiente, você precisa me trazer 10 '^952420Sede de Sangue^000000'";
+				close2;
+				enable_items;
+				end;
+			}
+			else if (getequipcardid(.@position, 2) > 0) {
+				mes "[Pudding]";
+				mes "Já trabalhei neste equipamento com '^952420Sede de Sangue^000000'.";
+				close2;
+				enable_items;
+				end;
+			} else {
+				.@socket_type = 3;
+			}
+			break;
+		case 4:
+			if (countitem(Goast_Chill) < 10) {
+				.@menu_clear$[1] = "^999999Não há 'Frio dos Mortos' suficiente^000000";
+				.@menu_clear$[2] = "^999999Não há 'Frio dos Mortos' suficiente^000000";
+				.@4thzptsodyd = 1;
+				.@3thzptsodyd = 1;
+			} else {
+				if (getequipcardid(.@position, 3) > 0) {
+					.@menu_clear$[1] = "Retirar o encantamento '^F2766EVontade do Guerreiro^000000'";
+				} else {
+					.@menu_clear$[1] = "^999999Não há encantamento para retirar^000000";
+					.@4thzptsodyd = 1;
+				}
+				if (getequipcardid(.@position, 2) > 0) {
+					.@menu_clear$[2] = "Retirar o encantamento '^952420Sede de Sangue^000000'";
+				} else {
+					.@menu_clear$[2] = "^999999Não há encantamento para retirar^000000";;
+					.@3thzptsodyd = 1;
+				}
+			}
+			mes "[Pudding]";
+			mes "Tudo bem, qual encantamento você deseja retirar?";
+			next;
+			.@menu = select("Não, eu não quero retirar nada.", .@menu_clear$[1], .@menu_clear$[2]);
+			switch(.@menu){
+				case 1:
+					mes "[Pudding]";
+					mes "Sério? Está bem, melhor assim.";
+					close2;
+					enable_items;
+					end;
+				case 2:
+				case 3:
+					if (countitem(Goast_Chill) < 10) {
+						mes "[Pudding]";
+						mes "Não há '^88C6F7Frio dos Mortos^000000', você precisa me trazer 10 '^88C6F7Frio dos Mortos^000000'";
+						close2;
+						enable_items;
+						end;
+					}
+					if ( (.@menu==3 && .@3thzptsodyd == 1) || (.@menu==2 && .@4thzptsodyd == 1) ) {
+						mes "[Pudding]";
+						mes "Este equipamento não possui nenhum encantamento especial para ser removido.";
+						close2;
+						enable_items;
+						end;
+					}
+					setarray .@equip_card[0], getequipcardid(.@position,0), getequipcardid(.@position,1), getequipcardid(.@position,2), getequipcardid(.@position,3);
+					if (.@menu==2){ .@equip_card[3] = 0; }
+					else { .@equip_card[2] = 0; }
+					.@equip_item = getequipid(.@position);
+					specialeffect EF_BEGINSPELL2, AREA, "Feiticeiro#Bio4Reward";
+					progressbar "ffff00", 2;
+					specialeffect2 EF_FROSTWEAPON;
+					delitem Goast_Chill, 10;
+					delequip .@position;
+					getitem2 .@equip_item, 1, 1, .@refine_count, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+					mes "[Pudding]";
+					if(.@menu==3)
+						mes "O encantamento '^952420Vontade do Guerreiro^000000' foi removido com sucesso.";
+					else
+						mes "O encantamento '^F2766ESede de Sangue^000000' foi removido com sucesso.";
+					close2;
+					enable_items;
+					end;
+			}
+	}
+	mes "[Pudding]";
+	mes "Para continuar, você precisa ficar ciente de algumas informações importantíssimas.";
+	next;
+	mes "[Pudding]";
+	mes "Ao usufruir do encantamento '^F2766EVontade do Guerreiro^000000' e '^952420Sede de Sangue^000000', o equipamento não poderá passar por um novo processo de inserção de encantamento, do contrário, ele será destruído..";
+	next;
+	mes "[Pudding]";
+	mes "^9D2628Se o equipamento for destruído, você perderá todas as cartas contidas nele, e também todos os níveis de refinamentos.^000000";
+	next;
+	mes "[Pudding]";
+	mes "Você realmente deseja inserir encantamento no equipamento?";
+	next;
+	if(select("Espere, vou pensar melhor.", "Claro, continue.") == 1) {
+		mes "[Pudding]";
+		mes "POIS BEM! Espero vê-lo novamente com novos equipamentos.";
+		close2;
+		enable_items;
+		end;
+	}
+	mes "[Pudding]";
+	mes "Temo que você tenha tomado a decisão correta...";
+	next;
+	if(.@socket_type >= 3) {
+		switch(.@type){
+			case 1:
+				.@i = rand(1, .@lhz_max_num);
+				if (.@i < 401)	 .@enchant = Strength1;
+				else if (.@i < 441) .@enchant = Strength2;
+				else if (.@i < 445) .@enchant = Strength3;
+				else if (.@i < 845) .@enchant = Agility1;
+				else if (.@i < 885) .@enchant = Agility2;
+				else if (.@i < 889) .@enchant = Agility3;
+				else if (.@i < 1289) .@enchant = Vitality1;
+				else if (.@i < 1329) .@enchant = Vitality2;
+				else if (.@i < 1333) .@enchant = Vitality3;
+				else if (.@i < 1523) .@enchant = Inteligence1;
+				else if (.@i < 1542) .@enchant = Inteligence2;
+				else if (.@i < 1544) .@enchant = Inteligence3;
+				else if (.@i < 1844) .@enchant = Dexterity1;
+				else if (.@i < 1874) .@enchant = Dexterity2;
+				else if (.@i < 1877) .@enchant = Dexterity3;
+				else if (.@i < 2067) .@enchant = Luck1;
+				else if (.@i < 2086) .@enchant = Luck2;
+				else if (.@i < 2088) .@enchant = Luck3;
+				else if (.@i < 2491) .@enchant = 0;
+				else if (.@i < 2891) .@enchant = Fighting_Spirit1;
+				else if (.@i < 2931) .@enchant = Fighting_Spirit2;
+				else if (.@i < 2935) .@enchant = Fighting_Spirit3;
+				else if (.@i < 3125) .@enchant = Spell1;
+				else if (.@i < 3144) .@enchant = Spell2;
+				else if (.@i < 3146) .@enchant = Spell3;
+				else if (.@i < 3148) .@enchant = Atk_Speed1;
+				else if (.@i < 3348) .@enchant = Sharp1;
+				else if (.@i < 3368) .@enchant = Sharp2;
+				else if (.@i < 3370) .@enchant = Sharp3;
+				else if (.@i < 3560) .@enchant = Expert_Archer1;
+				else if (.@i < 3579) .@enchant = Expert_Archer2;
+				else if (.@i < 3581) .@enchant = Expert_Archer3;
+				else .@enchant = 0;
+				break;
+			case 2:
+				.@i = rand(1, .@lhz_max_num);
+				if (.@i < 191)	 .@enchant = Strength1;
+				else if (.@i < 210) .@enchant = Strength2;
+				else if (.@i < 212) .@enchant = Strength3;
+				else if (.@i < 612) .@enchant = Agility1;
+				else if (.@i < 652) .@enchant = Agility2;
+				else if (.@i < 656) .@enchant = Agility3;
+				else if (.@i < 846) .@enchant = Vitality1;
+				else if (.@i < 865) .@enchant = Vitality2;
+				else if (.@i < 867) .@enchant = Vitality3;
+				else if (.@i < 1167) .@enchant = Inteligence1;
+				else if (.@i < 1197) .@enchant = Inteligence2;
+				else if (.@i < 1200) .@enchant = Inteligence3;
+				else if (.@i < 1600) .@enchant = Dexterity1;
+				else if (.@i < 1640) .@enchant = Dexterity2;
+				else if (.@i < 1644) .@enchant = Dexterity3;
+				else if (.@i < 1834) .@enchant = Luck1;
+				else if (.@i < 1853) .@enchant = Luck2;
+				else if (.@i < 1855) .@enchant = Luck3;
+				else if (.@i < 2258) .@enchant = 0;
+				else if (.@i < 2448) .@enchant = Fighting_Spirit1;
+				else if (.@i < 2467) .@enchant = Fighting_Spirit2;
+				else if (.@i < 2469) .@enchant = Fighting_Spirit3;
+				else if (.@i < 2669) .@enchant = Spell1;
+				else if (.@i < 2689) .@enchant = Spell2;
+				else if (.@i < 2691) .@enchant = Spell3;
+				else if (.@i < 2693) .@enchant = Atk_Speed1;
+				else if (.@i < 3093) .@enchant = Sharp1;
+				else if (.@i < 3133) .@enchant = Sharp2;
+				else if (.@i < 3137) .@enchant = Sharp3;
+				else if (.@i < 3537) .@enchant = Expert_Archer1;
+				else if (.@i < 3577) .@enchant = Expert_Archer2;
+				else if (.@i < 3581) .@enchant = Expert_Archer3;
+				else .@enchant = 0;
+				break;
+			case 3:
+				.@i = rand(1, .@lhz_max_num);
+				if (.@i < 301)	 .@enchant = Strength1;
+				else if (.@i < 331) .@enchant = Strength2;
+				else if (.@i < 334) .@enchant = Strength3;
+				else if (.@i < 534) .@enchant = Agility1;
+				else if (.@i < 554) .@enchant = Agility2;
+				else if (.@i < 556) .@enchant = Agility3;
+				else if (.@i < 956) .@enchant = Vitality1;
+				else if (.@i < 996) .@enchant = Vitality2;
+				else if (.@i < 1000) .@enchant = Vitality3;
+				else if (.@i < 1400) .@enchant = Inteligence1;
+				else if (.@i < 1440) .@enchant = Inteligence2;
+				else if (.@i < 1444) .@enchant = Inteligence3;
+				else if (.@i < 1844) .@enchant = Dexterity1;
+				else if (.@i < 1884) .@enchant = Dexterity2;
+				else if (.@i < 1888) .@enchant = Dexterity3;
+				else if (.@i < 2078) .@enchant = Luck1;
+				else if (.@i < 2097) .@enchant = Luck2;
+				else if (.@i < 2099) .@enchant = Luck3;
+				else if (.@i < 2502) .@enchant = 0;
+				else if (.@i < 2692) .@enchant = Fighting_Spirit1;
+				else if (.@i < 2711) .@enchant = Fighting_Spirit2;
+				else if (.@i < 2713) .@enchant = Fighting_Spirit3;
+				else if (.@i < 3113) .@enchant = Spell1;
+				else if (.@i < 3153) .@enchant = Spell2;
+				else if (.@i < 3157) .@enchant = Spell3;
+				else if (.@i < 3159) .@enchant = Atk_Speed1;
+				else if (.@i < 3349) .@enchant = Sharp1;
+				else if (.@i < 3368) .@enchant = Sharp2;
+				else if (.@i < 3370) .@enchant = Sharp3;
+				else if (.@i < 3560) .@enchant = Expert_Archer1;
+				else if (.@i < 3579) .@enchant = Expert_Archer2;
+				else if (.@i < 3581) .@enchant = Expert_Archer3;
+				else .@enchant = 0;
+				break;
+			case 4:
+				.@i = rand(1, .@lhz_max_num);
+				if (.@i < 301)	 .@enchant = Strength1;
+				else if (.@i < 331) .@enchant = Strength2;
+				else if (.@i < 334) .@enchant = Strength3;
+				else if (.@i < 634) .@enchant = Agility1;
+				else if (.@i < 664) .@enchant = Agility2;
+				else if (.@i < 667) .@enchant = Agility3;
+				else if (.@i < 967) .@enchant = Vitality1;
+				else if (.@i < 997) .@enchant = Vitality2;
+				else if (.@i < 1000) .@enchant = Vitality3;
+				else if (.@i < 1300) .@enchant = Inteligence1;
+				else if (.@i < 1330) .@enchant = Inteligence2;
+				else if (.@i < 1333) .@enchant = Inteligence3;
+				else if (.@i < 1633) .@enchant = Dexterity1;
+				else if (.@i < 1663) .@enchant = Dexterity2;
+				else if (.@i < 1666) .@enchant = Dexterity3;
+				else if (.@i < 1966) .@enchant = Luck1;
+				else if (.@i < 1996) .@enchant = Luck2;
+				else if (.@i < 1999) .@enchant = Luck3;
+				else if (.@i < 2399) .@enchant = 0;
+				else if (.@i < 2549) .@enchant = Mdef2;
+				else if (.@i < 2599) .@enchant = Mdef4;
+				else if (.@i < 2609) .@enchant = Mdef6;
+				else if (.@i < 2614) .@enchant = Mdef8;
+				else if (.@i < 2616) .@enchant = Mdef10;
+				else if (.@i < 2766) .@enchant = Def3;
+				else if (.@i < 2866) .@enchant = Def6;
+				else if (.@i < 2876) .@enchant = Def9;
+				else if (.@i < 2878) .@enchant = Def12;
+				else if (.@i < 3278) .@enchant = 0;
+				else if (.@i < 3428) .@enchant = Evasion1;
+				else if (.@i < 3478) .@enchant = Evasion3;
+				else if (.@i < 3488) .@enchant = Evasion6;
+				else if (.@i < 3498) .@enchant = SP50;
+				else if (.@i < 3734) .@enchant = HP100;
+				else if (.@i < 3834) .@enchant = HP200;
+				else if (.@i < 3884) .@enchant = HP300;
+				else .@enchant = 0;
+			break;
+		}
+		setarray .@equip_card[0], getequipcardid(.@position,0),getequipcardid(.@position,1),getequipcardid(.@position,2),getequipcardid(.@position,3);
+		.@equip_card[(.@socket_type-1)] = .@enchant;
+		.@equip_item = getequipid(.@position);
+		specialeffect EF_BEGINSPELL3, AREA, "Feiticeiro#Bio4Reward";
+		progressbar "ffff00", 2;
+		if (.@socket_type == 3)
+			delitem Blood_Thirst, 10;
+		else
+			delitem Will_Of_Warrior, 10;
+		delequip .@position;
+		if (.@enchant == 0) {
+			specialeffect2 EF_SUI_EXPLOSION;
+			emotion e_otl;
+			mes "[Pudding]";
+			mes "... Bem, sinto muito... o equipamento não pôde aceitar o encantamento "+((.@socket_type==3)?"'^952420Sede de Sangue^000000'":"'^F2766EVontade do Guerreiro^000000'")+" e foi destruído.";
+			close2;
+			enable_items;
+			end;
+		} else {
+			specialeffect2 EF_FIREHIT;
+			getitem2 .@equip_item, 1, 1, .@refine_count, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+			emotion e_ho;
+			mes "[Pudding]";
+			mes "Uff, ocorreu tudo bem, o encantamento "+((.@socket_type==3)?"'^952420Sede de Sangue^000000'":"'^F2766EVontade do Guerreiro^000000'")+" foi inserido com sucesso em seu equipamento...";
+			close2;
+			enable_items;
+			end;
+		}
+	}
+	enable_items;
+	end;
+}
+
+lhz_dun03,239,78,1	script	lhz_dun03_lhz_dun04	WARPNPC,1,1,{
+	end;
+
+	OnTouch:
+		if (lght_duk01 > 0 && lght_duk01 < 6) {
+			mes "Com o intuito de investigar os experimentos humanos, eu tive que descer para examinar um som horrível que vinha de lá.";
+			close2;
+			if (lght_duk01 < 3) {
+				warp "que_lhz", 245, 56;
+			} else if (lght_duk01 == 3) {
+				warp "que_lhz", 96, 136;
+			} else {
+				warp "que_lhz", 148, 215;
+			}
+		} else {
+			if (lhz_boss < 31) {
+				mes "- Som de assovio -";
+				mes "Estou escutando um som assustador entrelaçado com o vento.";
+				close2;
+			}
+			warp "lhz_dun04", 245, 56;
+		}
+		end;
+}
+
+lhz_dun04,244,61,1	warp	lhz_dun04_lhz_dun03	1,1,lhz_dun03,240,75
+
+que_lhz,242,50,0	script	#01Startpoint	-1,3,3,{
+	end;
+
+	OnInit:
+		initnpctimer;
+		end;
+
+	OnTimer60000:
+		mapannounce "que_lhz", "Clamor do homem: Por... por favor... me salve... eu não quero morrer... wouaaa...",bc_map,"0x7DCBF0";
+		end;
+
+	OnTimer120000:
+		mapannounce "que_lhz", "Clamor da mulher: ... nos... aaaah... salve...",bc_map,"0x7DCBF0";
+		end;
+
+	OnTimer180000:
+		mapannounce "que_lhz", "Clamor da criança: Bawwww~ Onde estou? Mamãe... aaaa...",bc_map,"0x7DCBF0";
+		end;
+
+	OnTimer240000:
+		mapannounce "que_lhz", "Clamor do homem velho: Kirk... ajud... ajuda...",bc_map,"0x7DCBF0";
+		end;
+
+	OnTimer300000:
+		stopnpctimer;
+		initnpctimer;
+		end;
+
+	OnTouch:
+		if (lght_duk01 == 1) {
+			mes "Cheguei a uma instalação de pesquisa que parece ser utilizada até hoje.";
+			next;
+			mes "Algumas partes estão bem danificadas, mas a instalação principal parece bem.";
+			next;
+			lght_duk01 = 2;
+			mes "Aproxime-se um pouco mais...";
+			close;
+		}
+		end;
+}
+
+que_lhz,206,74,4	script	Pesquisador#02	4_LGTSCIENCE,3,3,{
+	end;
+
+	OnTouch:
+		if (lght_duk01 == 2) {
+		  emotion e_omg, 1;
+		  mes "["+strcharinfo(PC_NAME)+"]";
+		  mes "Você!!! É o Wolfchev?";
+		  next;
+		  emotion e_gg, "Researcher#02";
+		  mes "[Wolfchev]";
+		  mes "Um humano! Hahaha. As pessoas tendem a detestar este lugar. Alias, por que você está aqui?";
+		  next;
+		  mes "["+strcharinfo(PC_NAME)+"]";
+		  mes "Você!!! Ouvi dizer que você estava realizando experimentos horripilantes com humanos, Wolfchev!";
+		  next;
+		  mes "["+strcharinfo(PC_NAME)+"]";
+		  mes "E ainda posso ver que continua comentendo essas atrocidades.";
+		  next;
+		  emotion e_gg, "Researcher#02";
+		  mes "[Wolfchev]";
+		  mes "Hihihi. Vejo que você conhece muito sobre mim. Foi você quem me denunciou?";
+		  mes "Como se atreve a voltar aqui depois do que fez. Hihihi.";
+		  next;
+		  mes "[Wolfchev]";
+		  mes "Eu me sinto bem ao ver um humano.";
+		  mes "Enfim, olha a hora, eu preciso ir. Hihihi.";
+		  next;
+		  mes "- Wolfchev fugiu rindo num tom muito estranho -";
+		  next;
+		  erasequest 5109;
+		  setquest 5110;
+		  lght_duk01 = 3;
+		  emotion e_omg, 1;
+		  mes "["+strcharinfo(PC_NAME)+"]";
+		  mes "Uau! Wolfchev, volte aqui!";
+		  close2;
+		  warp "que_lhz", 96, 136;
+		}
+		end;
+}
+
+que_lhz,94,119,4	script	Pesquisador#03	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000 Você está sobrecarregado de itens. Por favor, volte quando estiver mais leve. ^000000";
+		close;
+	}
+	if (lght_duk01 == 3) {
+		emotion e_swt2, "Researcher#03";
+		mes "[Wolfchev]";
+		mes "(Arquejo) Pshaw... Você ainda está me seguindo. Ei, por que você continua me seguindo?";
+		next;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Wolfchev... Você disse antes que estava fazendo pesquisas para o bem das pessoas.";
+		next;
+		mes "[Wolfchev]";
+		mes "Talvez eu tenha dito isso, então, e dai?";
+		next;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Mas, seu experimento parece realmente perigoso. Como você sabe se as pessoas querem isso?";
+		next;
+		emotion e_gg, "Researcher#03";
+		mes "[Wolfchev]";
+		mes "Todos têm o ânseio de serem fortes e poder controlar as outras pessoas, fazer as pessoas o obedecer e admirar. Você nunca teve esse desejo?";
+		next;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "... .... ...";
+		next;
+		mes "[Wolfchev]";
+		mes "Se você realmente tem amor pela sua vida, devia parar de me seguir. Caia fora.";
+		next;
+		mes "Wolfchev está novamente fugindo com um som estranho.";
+		next;
+		lght_duk01 = 4;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Awwww!! Você!! Está fugindo de novo... volte aqui!";
+		close2;
+		warp "que_lhz", 148, 215;
+	}
+	end;
+}
+
+que_lhz,147,224,4	script	Pesquisador#04	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000 Você está sobrecarregado de itens. Por favor, volte quando estiver mais leve. ^000000";
+		close;
+	}
+	if (lght_duk01 == 4) {
+		mes "[Wolfchev]";
+		mes "Você é persistente, não é? Ou melhor... eu acho que você gosta de mim, hein? Hihihi.";
+		next;
+		emotion e_dots;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "... .... ...";
+		next;
+		specialeffect EF_SIGHTRASHER;
+		mes "Wolfchev zombou de você por causa do silêncio e apertou um botão em sua mão. Então, as criaturas se despertaram ao redor dele.";
+		next;
+		for(.@i = 1; .@i < 9; .@i++)
+			donpcevent "Human Guinea pig#0"+.@i+"::OnEnable";
+		mes "[Wolfchev]";
+		mes "Mais uma vez... é hora de dizer adeus.";
+		next;
+		emotion e_gasp, "Researcher#04";
+		mes "[Wolfchev]";
+		mes "Bem! Que foi...";
+		next;
+		mes "[Wolfchev]";
+		mes "Se você vier a mim para realizar o experimento, podemos conversar melhor.";
+		next;
+		donpcevent "#Eventctrl::OnEnable";
+		progressbar "FF00FF", 5;
+		emotion e_omg, "Researcher#04";
+		mes "[Wolfchev]";
+		mes "Oh rapaz... O que houve?";
+		next;
+		donpcevent "#Eventctrl::OnEnable2";
+		for(.@i = 1; .@i < 9; .@i++)
+			donpcevent "Human Guinea pig#0"+.@i+"::OnDisable";
+		mes "[Wolfchev]";
+		mes "Não! Não venha até mim! Não!";
+		next;
+		lght_duk01 = 5;
+		mes "Antes de tudo, eu preciso cuidar primeiro daquelas criaturas.";
+		close;
+	} else if (lght_duk01 == 5) {
+		.@i = rand(1,3);
+		if (.@i == 2) {
+			mes "Wolfchev está confuso e não faz ideia de como resolver isso, já que esses monstros estão querendo também atacá-lo.";
+			next;
+			specialeffect EF_STUNATTACK;
+			specialeffect EF_STUNATTACK;
+			mes "- Acerte-o para acordá-lo -";
+			next;
+			specialeffect EF_DARKBREATH;
+			emotion e_no;
+			mes "["+strcharinfo(PC_NAME)+"]";
+			mes "Ei cara! De qualquer maneira vamos sair daqui primeiro! Não existe algum lugar onde eles não possam nos alcançar?";
+			next;
+			mes "[Wolfchev]";
+			mes "Oooops... Então rapaz... Meu laboratório... Vamos para o meu laboratório...";
+			next;
+			mes "["+strcharinfo(PC_NAME)+"]";
+			mes "Seu laboratório? Está bem, seu laboratório está para qual direção?";
+			next;
+			mes "[Wolfchev]";
+			mes "Para o norte... não é tão longe daqui...";
+			next;
+			erasequest 5110;
+			setquest 5111;
+			lght_duk01 = 6;
+			mes "Então, vamos para o '^0000FFLaboratório de Wolfchev^000000' na direção das 12 horas...";
+			close;
+		} else {
+			emotion e_spin, "Researcher#04";
+			mes "Wolfchev está confuso e não faz ideia de como resolver isso, já que esses monstros estão querendo também atacá-lo.";
+			close;
+		}
+	} else if (lght_duk01 == 6) {
+		mes "Então, vamos para o '^0000FFLaboratório de Wolfchev^000000' na direção das 12 horas...";
+		close;
+	}
+	end;
+}
+
+que_lhz,148,251,0	script	#Move2lab	-1,12,0,{
+	end;
+
+	OnTouch:
+		if (lght_duk01 == 6) {
+			mes "Vamos para o '^0000FFLaboratório de Wolfchev^000000'.";
+			close2;
+			warp "lhz_dun04", 148, 269;
+			end;
+		} else {
+			mes "Ainda tenho algo a conversar com Wolfchev.";
+			close;
+		}
+}
+
+que_lhz,1,1,0	script	#Eventctrl	-1,{
+	end;
+
+	OnEnable:
+		initnpctimer;
+		end;
+
+	OnEnable2:
+		monster "que_lhz", 139, 232, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 147, 232, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 156, 232, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 156, 224, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 156, 215, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 147, 215, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 139, 215, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		monster "que_lhz", 139, 224, "Cobaia Humana", QUEST_CHEN, 1, "#Eventctrl::OnMyMobDead";
+		end;
+
+	OnTimer1000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#01";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#01";
+		end;
+
+	OnTimer2000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#02";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#02";
+		end;
+
+	OnTimer3000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#03";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#03";
+		end;
+
+	OnTimer4000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#04";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#04";
+		end;
+
+	OnTimer5000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#05";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#05";
+		end;
+
+	OnTimer6000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#06";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#06";
+		end;
+
+	OnTimer7000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#07";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#07";
+		end;
+
+	OnTimer8000:
+		specialeffect EF_SUI_EXPLOSION,AREA, "#08";
+		specialeffect EF_BEGINASURA, "Cobaia Humana#08";
+		stopnpctimer;
+		end;
+
+	OnMyMobDead:
+		if(mobcount("que_lhz", "#Eventctrl::OnMyMobDead") < 4)
+			killmonster "que_lhz", "#Eventctrl::OnMyMobDead";
+}
+
+que_lhz,139,232,0	script	#01	-1,{ end; }
+que_lhz,147,232,0	script	#02	-1,{ end; }
+que_lhz,156,232,0	script	#03	-1,{ end; }
+que_lhz,156,224,0	script	#04	-1,{ end; }
+que_lhz,156,215,0	script	#05	-1,{ end; }
+que_lhz,147,215,0	script	#06	-1,{ end; }
+que_lhz,139,215,0	script	#07	-1,{ end; }
+que_lhz,139,224,0	script	#08	-1,{ end; }
+
+que_lhz,140,231,1	script	Cobaia Humana#01	CHEN,{
+	end;
+
+	OnInit:
+		disablenpc strnpcinfo(0);
+		end;
+
+	OnEnable:
+		enablenpc strnpcinfo(0);
+		end;
+
+	OnDisable:
+		specialeffect EF_FLASHER;
+		disablenpc strnpcinfo(0);
+		end;
+}
+
+que_lhz,147,231,0	duplicate(Cobaia Humana#01)	Cobaia Humana#02	CHEN
+que_lhz,155,231,7	duplicate(Cobaia Humana#01)	Cobaia Humana#03	CHEN
+que_lhz,155,224,6	duplicate(Cobaia Humana#01)	Cobaia Humana#04	CHEN
+que_lhz,155,216,5	duplicate(Cobaia Humana#01)	Cobaia Humana#05	CHEN
+que_lhz,147,216,4	duplicate(Cobaia Humana#01)	Cobaia Humana#06	CHEN
+que_lhz,140,216,3	duplicate(Cobaia Humana#01)	Cobaia Humana#07	CHEN
+que_lhz,140,224,2	duplicate(Cobaia Humana#01)	Cobaia Humana#08	CHEN
+
+lhz_dun04,151,276,3	script	Pesquisador#memo	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000 Você está sobrecarregado de itens. Por favor, volte quando estiver mais leve. ^000000";
+		close;
+	}
+	.@killed_bosses = true;
+	for(.@quest_id = 5113; .@quest_id <= 5125; .@quest_id++) {
+		if(questprogress(.@quest_id, HUNTING) != 2){
+			.@killed_bosses = false;
+			break;
+		}
+	}
+	if (lght_duk01 < 6) {
+		mes "[Pesquisador]";
+		mes "O quê Você ainda deseja algo daqui?";
+		next;
+		if(select("Sim, desejo!!", "Hm... não!") == 1) {
+			mes "[Pesquisador]";
+			mes "Por que você não para de olhar ao redor do laboratório, e preste mais atenção no que está acaminho?";
+			close;
+		}
+		mes "[Pesquisador]";
+		mes "Então, pare de me amolar e vá embora daqui. Khh khh.";
+		close;
+	} else if (lght_duk01 == 6) {
+		mes "Parece que as criaturas do experimento não podem se aproximar do laboratório, como disse Wolfchev.";
+		next;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Ei, há alguma maneira de parar essas criaturas? Você deve saber alguma coisa, afinal, você as criou!";
+		next;
+		mes "[Wolfchev]";
+		mes "Urrgg... Jamais pensei que eles pudessem perder o controle assim...";
+		next;
+		mes "[Wolfchev]";
+		mes "O que houve de errado com isso?";
+		next;
+		mes "[Wolfchev]";
+		mes "Urr... Eu acho que vão destruir todo o meu laboratório!";
+		next;
+		emotion e_loud, 1;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Ei! Wolfchev!!";
+		next;
+		mes "[Wolfchev]";
+		mes "Você!? Por favor, os faça parar.";
+		mes "As criaturas são todas ^9f6077conectadas a mesma fonte de alimentação^000000.";
+		next;
+		mes "[Wolfchev]";
+		mes "Há uma criatura especial, estando sempre na ^46B951posição de chefe^000000...";
+		mes "Se você puder derrotá-la, todos as ^A1BB44criaturas-escravas^000000 andando ao redor vão parar de se mover imediatamente.";
+		next;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Criatura-chefe??";
+		mes "Ei! Wolfchev! Onde está essa ^46B951Criatura-Chefe^000000?";
+		next;
+		mes "[Wolfchev]";
+		mes "Dentro... do laboratório... Ela deve estar acordada neste momento. É triste destruir toda uma vida de trabalho, mas não posso aguentar mais...";
+		next;
+		mes "["+strcharinfo(PC_NAME)+"]";
+		mes "Como posso entrar no laboratório, Wolfchev?";
+		next;
+		mes "[Wolfchev]";
+		mes "Oh... espere!";
+		mes "Vou ajudá-lo entrar lá.";
+		next;
+		mes "[Wolfchev]";
+		mes "Uma boa notícia é que as criaturas-escravas do chefe não estão programadas para acordar todas ao mesmo tempo.";
+		next;
+		erasequest 5111;
+		lght_duk01 = 7;
+		for(.@i = 5113; .@i <= 5125; .@i++)
+			setquest .@i;
+		mes "[Wolfchev]";
+		mes "Mesmo assim, é realmente muito perigoso, já que não sabemos quando vão escapar de lá.";
+		mes "Então, prepare os membros de seu grupo, cuidado com as criaturas-chefe. Não sei quanto tempo esse lugar pode aguentar.";
+		close;
+	} else if (lght_duk01 > 6) {
+		if (getcharid(1) > 0) {
+			mes "[Wolfchev]";
+			mes "Você já arrumou tudo? Vou preparar a entrada se você for o líder do grupo.";
+			next;
+			switch(select("Alguma informação importante?", "Entrar no laboratório", "Ainda não")) {
+			case 1:
+				mes "[Wolfchev]";
+				mes "Eu não sabia que pressionar o alarme de emergência causaria esse problema. Parece que o sistema de segurança foi alterado para modo emergência.";
+				next;
+				mes "[Wolfchev]";
+				mes "Há tantos sistemas instalados dentro do laboratório, então, não posso ter certeza de como os sistemas estão funcionando agora.";
+				next;
+				mes "[Wolfchev]";
+				mes "Ah! Se o sistema de emergência estiver ativado, somente o líder do grupo poderá controlá-lo. É muito complexo, compreendo.";
+				next;
+				mes "[Wolfchev]";
+				mes "E apenas para que você saiba, por favor, não toque em coisas só por curiosidade. Eu não quero que você se machuque.";
+				close;
+			case 2:
+				.@quest_time = questprogress(5112, PLAYTIME);
+				if (.@quest_time==1) {
+					mes "[Wolfchev]";
+					mes "Me desculpe, mas parece que você ainda não pode entrar no laboratório. Você pode retornar em outro momento? O sistema é muito complexo sabe.";
+					close;
+				} else {
+					if (.@quest_time)
+						erasequest 5112;
+					if (!.@killed_bosses) {
+						if (lght_duk01 == 9) {
+							mes "[Wolfchev]";
+							mes "Você voltou, Ka Ha Ha.";
+							next;
+							mes "[Wolfchev]";
+							mes "Depois que você saiu, eu comecei a examinar algumas partes do sistema. E, de repente, coisas estranhas aconteceram.";
+							next;
+							mes "["+strcharinfo(PC_NAME)+"]";
+							mes "O que foi exatamente?";
+							next;
+							mes "[Wolfchev]";
+							mes "Todas as criaturas-escravas do chefe que você cuidou começaram a se regenerar.";
+							next;
+							mes "["+strcharinfo(PC_NAME)+"]";
+							mes "O quê? Como isso é possível...?!";
+							next;
+							mes "[Wolfchev]";
+							mes "Eu também fiquei abismado. Mas, tudo isso não devia estar acontecendo...";
+							next;
+							mes "["+strcharinfo(PC_NAME)+"]";
+							mes "... .... ...";
+							next;
+							mes "[Wolfchev]";
+							mes "Como você pode ver, você é o único em que posso confiar. Você e seu grupo me ajuderão mais uma vez a controlar essas criaturas?";
+							next;
+							if(select("Não tenho certeza", "Porque não") == 1) {
+								mes "[Wolfchev]";
+								mes "Por estarmos nesta situação, compreendo o porquê você hesita, e não quero pressioná-lo.";
+								next;
+							} else {
+								for(.@i = 5113; .@i <= 5125; .@i++) {
+									setquest .@i;
+								}
+								lght_duk01 = 10;
+								mes "[Wolfchev]";
+								mes "Muito Obrigado, "+strcharinfo(PC_NAME)+".";
+								mes "Vou ajudá-lo entrar no laboratório.";
+								next;
+							}
+						} else {
+							mes "[Wolfchev]";
+							mes "Hm... As crituras do chefe estão se regenerando mais uma vez...";
+							next;
+							mes "[Wolfchev]";
+							mes "Você pode me ajudar mais uma vez?";
+							next;
+							if(select("Não tenho certeza", "Porque não") == 1) {
+								mes "[Wolfchev]";
+								mes "Por estarmos nesta situação, compreendo o porquê você hesita, e não quero pressioná-lo.";
+								next;
+							} else {
+								for(.@i = 5113; .@i <= 5125; .@i++) {
+									setquest .@i;
+								}
+								lght_duk01 = 10;
+								mes "[Wolfchev]";
+								mes "Muito Obrigado, "+strcharinfo(PC_NAME)+".";
+								mes "Você deseja entrar lá, certo?";
+								next;
+							}
+						}
+					}
+				}
+				if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+					.@instance = instance_create("Worsef", getcharid(1));
+					if (.@instance < 0) {
+						mes "[Wolfchev]";
+						mes "Hm... O sistema de entrada do laboratório é um pouco complexo. Você espera que eu faça uma analise do sistema?";
+					} else {
+						mes "[Wolfchev]";
+						mes "Por favor, aguarde...";
+						next;
+						mes "Wolfchev começou manusear determinadas engrenagens.";
+						next;
+						progressbar "FF00FF", 2;
+						if (instance_attachmap("1@lhz", .@instance) != "") {
+							instance_set_timeout 14400, 300, .@instance;
+							instance_init(.@instance);
+							mes "[Wolfchev]";
+							mes "Bem! Eu cadastrei as informações no banco de dados do sistema.";
+							mes "^0000ff"+strcharinfo(PC_NAME)+"^000000, membro do grupo ^0000ff"+strcharinfo(1)+"^000000.";
+							next;
+							mes "[Wolfchev]";
+							mes "Neste momento, seu grupo recebeu a permissão de entrada.";
+						} else {
+							instance_destroy(.@instance);
+						}
+					}
+					close;
+				} else {
+					mes "[Wolfchev]";
+					mes "Você não é ^0000ffLíder do Grupo^000000? Por favor, traga-o até aqui.";
+					close;
+				}
+			case 3:
+				mes "[Wolfchev]";
+				mes "Você ainda precisa de mais tempo para se preparar? Por favor, não temos o dia todo.";
+				close;
+			}
+		} else {
+			mes "[Wolfchev]";
+			mes "Você está tentando ir lá junto? Isso é suicídio! Além do mais, nosso sistema de entrada do laboratório não é tão fácil quanto você pensa.";
+			close;
+		}
+	} else {
+		mes "[Wolfchev]";
+		mes "Woo! Algo estranho está impossibilitando continuar. Se isso continuar acontecendo, talvez devêssemos tentar de outro jeito...";
+		close;
+	}
+}
+
+lhz_dun04,147,279,0	script	Entrada do Laboratório#memo	CLEAR_NPC,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000Você não pôde continuar devido possuir muitos itens.^000000";
+		close;
+	}
+	.@lhz_time = questprogress(5112, PLAYTIME);
+	if (lght_duk01 < 7) {
+		mes "Diz,";
+		mes "'^0000FF****Só agentes autorizados do laboratório^000000'";
+		close;
+	}
+	if (!.@lhz_time) {
+		mes "Esta é uma entrada para o Laboratório de Wolfchev. Algo desconhecido começou uivar logo após à entrada.";
+		next;
+		if(select("Vamos entrar", "Talvez não") == 2) {
+			mes "Você desistiu de entrar no Laboratório de Wolfchev.";
+			close;
+		}
+		if (has_instance("1@lhz") == "") {
+			mes "^FF0000Alerta^000000";
+			mes ""+strcharinfo(PC_NAME)+". . .";
+			mes "^FF0000Agente não autorizado^000000";
+			next;
+			pushpc 0, 10;
+			percentheal -5,0;
+			specialeffect EF_AUTOCOUNTER;
+			specialeffect2 EF_BASH;
+			mes "Você foi ferido pelo Sistema de Segurança do laboratório.";
+			close;
+		} else {
+			mapannounce "lhz_dun04","O sistema de entrada do laboratório concede acesso ao integrante do grupo ["+strcharinfo(1)+"], ["+strcharinfo(PC_NAME)+"]...",bc_map,"0x0DF297";
+			setquest 5112;
+			warp "1@lhz", 45, 148;
+			close;
+		}
+	} else if (.@lhz_time == 1) {
+		mes "Di Rit- Di- Di- Dit-";
+		next;
+		mes ""+strcharinfo(PC_NAME)+". . .";
+		mes "^FF0000Agente não autorizado^000000";
+		next;
+		mes "O sistema negou sua entrada.";
+		close;
+	} else if (.@lhz_time == 2) {
+		mes "Di Rit- Di- Di- Dit-";
+		next;
+		erasequest 5112;
+		mes ""+strcharinfo(PC_NAME)+". . .";
+		mes "^FF0000A negação de acesso foi retirada.^000000";
+		close;
+	} else {
+		mes "^FF0000Erro! Erro!^000000";
+		mes "^FF0000Por favor, tente novamente.^000000";
+		close;
+	}
+}
+
+1@lhz,35,108,4	script	Lab1#1_1	CLEAR_NPC,{
+	end;
+
+	OnInstanceInit:
+		initnpctimer;
+		end;
+
+	OnDisable:
+		stopnpctimer;
+		end;
+
+	OnType_02:
+		donpcevent instance_npcname("Manual Sheet#1_1")+"::OnEnable";
+		donpcevent instance_npcname("Valve#1_2")+"::OnEnable";
+		donpcevent instance_npcname("Válvula#1_3")+"::OnEnable";
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] O pessoal autorizado deve efetuar o acesso de emergência.",bc_map,"0xff9977";
+		end;
+
+	OnTimer1000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Alerta! Alerta! Intruso detectado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer2000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o sistema de segurança do laboratório 1 será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer7000:
+		donpcevent instance_npcname("MobCtrl1#mob01")+"::OnEnable";
+		end;
+}
+
+1@lhz,37,108,4	script	MobCtrl1#mob01	CLEAR_NPC,{
+	end;
+
+	OnEnable:
+		.@map$ = instance_mapname("1@lhz");
+		mapannounce .@map$,"[Sistema de Segurança] Sistema de segurança ativado!! Os animais do experimento foram liberados. As pessoas precisam evacuar.",bc_map,"0xff9977";
+		areamonster .@map$,35,159,50,169,"Animal Faminto",MD_DESERT_WOLF,rand(10,15),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		initnpctimer;
+		end;
+
+	OnDisable:
+		killmonster instance_mapname("1@lhz"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		end;
+
+	OnTimer180000:
+		stopnpctimer;
+		if(mobcount(instance_mapname("1@lhz"), instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+			donpcevent instance_npcname("Lab1#1_1")+"::OnType_02";
+			mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] O sistema de segurança número 1 do laboratório foi desativado.",bc_map,"0xff9977";
+		} else {
+			initnpctimer;
+		}
+		end;
+
+	OnMyMobDead:
+		if(mobcount(instance_mapname("1@lhz"), instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+			donpcevent instance_npcname("Lab1#1_1")+"::OnType_02";
+			mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] O sistema de segurança número 1 do laboratório foi desativado.",bc_map,"0xff9977";
+			stopnpctimer;
+		}
+		end;
+}
+
+1@lhz,39,168,0	script	Folhas do Manual#1_1	CLEAR_NPC,{
+	mes "Há folhas do manual das válvulas espalhadas pelo chão.";
+	next;
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		mes "Há folhas do manual das válvulas espalhadas pelo chão.";
+		next;
+		mes "[Acesso da Válvula Manual de Emergência]";
+		switch(lght_duk02) {
+		case 0:
+			switch(rand(1,6)) {
+			case 1:
+				lght_duk02 = 1;
+				mes "Vire a válvula esquerda duas vezes no sentido horário, uma no anti-horário e uma no horário";
+				break;
+			case 2:
+				lght_duk02 = 2;
+				mes "Vire a válvula esquerda uma vez no sentido horário, duas no anti-horário e uma no horário";
+				break;
+			case 3:
+				lght_duk02 = 3;
+				mes "Vire a válvula esquerda uma vez no sentido horário, uma no anti-horário e duas no horário";
+				break;
+			case 4:
+				lght_duk02 = 4;
+				mes "Vire a válvula esquerda uma vez no sentido horário, uma no anti-horário e duas no horário";
+				break;
+			case 5:
+				lght_duk02 = 5;
+				mes "Vire a válvula direita uma vez no sentido anti-hário, duas no horário e uma no anti-horário";
+				break;
+			case 6:
+				lght_duk02 = 6;
+				mes "Vire a válvula direita uma vez no sentido anti-horário, uma no horário e duas no anti-horário";
+				break;
+			default:
+			    mes "Este erro é desconhecido. Tente novamente, caso persista, entre em contato com o GM";
+				break;
+			}
+			break;			
+		case 1:
+			mes "Vire a válvula esquerda duas vezes no sentido horário, uma no anti-horário e uma no horário";
+			break;
+		case 2:
+			mes "Vire a válvula esquerda uma vez no sentido horário, duas no anti-horário e uma no horário";
+			break;
+		case 3:
+			mes "Vire a válvula esquerda uma vez no sentido horário, uma no anti-horário e duas no horário";
+			break;
+		case 4:
+			mes "Vire a válvula esquerda uma vez no sentido horário, uma no anti-horário e duas no horário";
+			break;
+		case 5:
+			mes "Vire a válvula direita uma vez no sentido anti-hário, duas no horário e uma no anti-horário";
+			break;
+		case 6:
+			mes "Vire a válvula direita uma vez no sentido anti-horário, uma no horário e duas no anti-horário";
+			break;
+		default:
+			mes "Este erro é desconhecido. Tente novamente, caso persista, entre em contato com o GM";
+			break;	
+			
+		}
+	} else {
+	    mes "Você, sendo o líder do grupo, começou a ler o manual.";
+	}
+	close;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("Manual Sheet#1_1");
+		end;
+
+	OnEnable:
+		specialeffect EF_LIGHTSPHERE;
+		enablenpc instance_npcname("Manual Sheet#1_1");
+		end;
+}
+
+1@lhz,41,172,0	script	Válvula#1_2	CLEAR_NPC,{
+	.@open_portal = 0;
+	mes "Esta é a válvula esquerda do acesso de emergência.";
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		next;
+		mes "Para qual direção você quer virá-la?";
+		next;
+		if(lght_duk02 < 1 || lght_duk02 > 3) {
+			for(.@i = 1; .@i <= 4; .@i++) {
+				select("Sentido horário", "Sentido anti-horário");
+				mes "-Um som de metal-";
+				if(.@i != 4)
+					mes "E agora, qual direção?";
+				next;
+			}
+		} else {
+			// lght_duk02 == 1 : Sentido horário, Sentido horário, Sentido anti-horário, Sentido horário
+			// lght_duk02 == 2 : Sentido horário, Sentido anti-horário, Sentido anti-horário, Sentido horário
+			// lght_duk02 == 3 : Sentido horário, Sentido anti-horário, Sentido horário, Sentido horário
+			for(.@i = 1; .@i <= 4; .@i++) {
+				switch(select("Sentido horário", "Sentido anti-horário")) {
+				case 1:
+					if((.@i == 1 || .@i == 4) || (.@i == 2 && lght_duk02 == 1) || (.@i == 3 && lght_duk02 == 3)) {
+						.@open_portal += 1;
+					}
+				case 2:
+					if((.@i == 2 && lght_duk02 != 1) || (.@i == 3 && lght_duk02 != 3)) {
+						.@open_portal += 1;
+					}
+				}
+				mes "-Um som de metal-";
+				if(.@i != 4)
+					mes "E agora, qual direção?";
+				next;
+			}
+		}
+		if (.@open_portal == 4) {
+			donpcevent instance_npcname("#potal_01")+"::OnEnable";
+			lght_duk02 = 0;
+			mes "-Portão aberto-";
+			next;
+			mes "O portão de acesso ao Lab. 2. está aberto.";
+		} else {
+			lght_duk02 = 0;
+			mes "Nada aconteceu.";
+			next;
+			mes "Você precisa ler novamente o manual.";
+		}
+	}
+	close;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("Valve#1_2");
+		end;
+
+	OnEnable:
+		specialeffect EF_LIGHTSPHERE;
+		enablenpc instance_npcname("Valve#1_2");
+		end;
+}
+
+1@lhz,52,172,0	script	Válvula#1_3	CLEAR_NPC,{
+	.@open_portal = 0;
+	mes "Esta é a válvula esquerda para o acesso de emergência.";
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		next;
+		mes "Para qual direção você quer virá-la?";
+		next;
+		if(lght_duk02 < 4 || lght_duk02 > 6) {
+			for(.@i = 1; .@i <= 4; .@i++) {
+				select("Sentido horário", "Sentido anti-horário");
+				mes "-Um som de metal-";
+				if(.@i != 4)
+					mes "E agora, qual direção?";
+				next;
+			}
+		} else {
+			// lght_duk02 == 4 : Sentido anti-horário, Sentido anti-horário, Sentido horário, Sentido anti-horário
+			// lght_duk02 == 5 : Sentido anti-horário, Sentido horário, Sentido horário, Sentido anti-horário
+			// lght_duk02 == 6 : Sentido anti-horário, Sentido horário, Sentido anti-horário, Sentido anti-horário
+			for(.@i = 1; .@i <= 4; .@i++) {
+				switch(select("Sentido horário", "Sentido anti-horário")) {
+				case 1:
+					if((.@i == 2 && lght_duk02 != 4) || (.@i == 3 && lght_duk02 != 6))
+						.@open_portal += 1;
+					break;
+				case 2:
+					if((.@i == 1 || .@i == 4) || (.@i == 2 && lght_duk02 == 4) || (.@i == 3 && lght_duk02 == 6))
+						.@open_portal += 1;
+					break;
+				}
+				mes "-A metal sound-";
+				if(.@i != 4)
+					mes "E agora, qual direção?";
+				next;
+			}
+		}
+		if (.@open_portal == 4) {
+			donpcevent instance_npcname("#potal_01")+"::OnEnable";
+			lght_duk02 = 0;
+			mes "-Porta de acesso aberta-";
+			next;
+			mes "A porta que leva ao laboratório 2 está aberta.";
+		} else {
+			lght_duk02 = 0;
+			mes "Nada aconteceu.";
+			next;
+			mes "Você precisa ler novamente o manual.";
+		}
+	}
+	close;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("Válvula#1_3");
+		end;
+
+	OnEnable:
+		specialeffect EF_LIGHTSPHERE;
+		enablenpc instance_npcname("Válvula#1_3");
+		end;
+}
+
+
+1@lhz,45,173,0	script	#potal_01	WARPNPC,2,2,{
+	end;
+
+	OnInstanceInit:
+	OnDisable:
+		disablenpc instance_npcname("#potal_01");
+		end;
+
+	OnEnable:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] A porta que leva ao laboratório 2 está aberta.",bc_map,"0xff9977";
+		enablenpc instance_npcname("#potal_01");
+		end;
+
+	OnTouch:
+		warp instance_mapname("1@lhz"), 151, 29;
+		end;
+}
+
+1@lhz,151,29,0	script	#2_0	-1,1,1,{
+	end;
+
+	OnEnable:
+		enablenpc instance_npcname("#2_0");
+		end;
+
+	OnDisable:
+		disablenpc instance_npcname("#2_0");
+		end;
+
+	OnTouch:
+		donpcevent instance_npcname("Lab2#2_1")+"::OnEnable";
+		donpcevent instance_npcname("#2_0")+"::OnDisable";
+		end;
+}
+
+1@lhz,35,106,4	script	Lab2#2_1	CLEAR_NPC,{
+	end;
+
+	OnInstanceInit:
+	OnDisable:
+		stopnpctimer;
+		end;
+
+	OnEnable:
+		initnpctimer;
+		end;
+
+	OnTimer1000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Alerta! Alerta! Intruso detectado no laboratório 2.",bc_map,"0xff9977";
+		end;
+
+	OnTimer3000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o sistema de segurança do laboratório 2 será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer5000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Alerta! A pressão nos canos do laboratório 2 está alta demais.",bc_map,"0xff99ff";
+		end;
+
+	OnTimer8000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Primeiro sistema de segurança ativado! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl2#mob02")+"::On01";
+		end;
+
+	OnTimer10000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Alerta! A pressão nos canos está alta demais. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer190000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Alerta! A pressão nos canos está alta demais. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer303000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o segundo sistema de segurança será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer308000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Segundo sistema de segurança ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl2#mob02")+"::On02";
+		end;
+
+	OnTimer370000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Atenção! A pressão dos tubos está muito forte. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer550000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Atenção! A pressão dos tubos está muito forte. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer603000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o terceiro sistema de segurança será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer608000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Terceiro sistema de segurança ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl2#mob02")+"::On03";
+		end;
+
+	OnTimer730000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Atenção! A pressão dos tubos está muito forte. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer903000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o quarto sistema de segurança será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer908000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Quarto sistema de segurança ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl2#mob02")+"::On04";
+		end;
+
+	OnTimer910000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Atenção! A pressão dos tubos está muito forte. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer1090000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Atenção! A pressão dos tubos está muito forte. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		end;
+
+	OnTimer1203000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o quinto sistema de segurança será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer1208000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Quinto sistema de segurança ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl2#mob02")+"::On05";
+		end;
+
+	OnTimer1270000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Atenção! A pressão dos tubos está muito forte. Abra a válvula.",bc_map,"0xff99ff";
+		donpcevent instance_npcname("Lab2#2_2")+"::OnPipePressure";
+		stopnpctimer;
+		end;
+}
+
+1@lhz,37,106,4	script	Lab2#2_2	CLEAR_NPC,{
+	end;
+
+	OnInstanceInit:
+		'broken_pipes = 0;
+		stopnpctimer;
+		end;
+
+	OnPipePressure:
+		switch(rand(1,6)) {
+		case 1:
+			donpcevent instance_npcname("Válvula#2_1")+"::OnEnable";
+			donpcevent instance_npcname("MobCtrl2#mob02")+"::On2_01";
+		case 2:
+			donpcevent instance_npcname("Válvula#2_2")+"::OnEnable";
+			donpcevent instance_npcname("MobCtrl2#mob02")+"::On2_02";
+		case 3:
+			donpcevent instance_npcname("Válvula#2_3")+"::OnEnable";
+			donpcevent instance_npcname("MobCtrl2#mob02")+"::On2_03";
+		case 4:
+			donpcevent instance_npcname("Válvula#2_4")+"::OnEnable";
+			donpcevent instance_npcname("MobCtrl2#mob02")+"::On2_04";
+		case 5:
+			donpcevent instance_npcname("Válvula#2_5")+"::OnEnable";
+			donpcevent instance_npcname("MobCtrl2#mob02")+"::On2_05";
+		case 6:
+			donpcevent instance_npcname("Válvula#2_6")+"::OnEnable";
+			donpcevent instance_npcname("MobCtrl2#mob02")+"::On2_06";
+		}
+		initnpctimer;
+		end;
+
+	OnDisableValve1:
+		disablenpc instance_npcname("Válvula#2_1");
+		stopnpctimer;
+		end;
+
+	OnDisableValve2:
+		disablenpc instance_npcname("Válvula#2_2");
+		stopnpctimer;
+		end;
+
+	OnDisableValve3:
+		disablenpc instance_npcname("Válvula#2_3");
+		stopnpctimer;
+		end;
+
+	OnDisableValve4:
+		disablenpc instance_npcname("Válvula#2_4");
+		stopnpctimer;
+		end;
+
+	OnDisableValve5:
+		disablenpc instance_npcname("Válvula#2_5");
+		stopnpctimer;
+		end;
+
+	OnDisableValve6:
+		disablenpc instance_npcname("Válvula#2_6");
+		stopnpctimer;
+		end;
+
+	OnTimer63000:
+		for(.@i = 1; .@i < 7; .@i++) {
+			specialeffect EF_SUI_EXPLOSION, AREA, instance_npcname("Valve#2_"+.@i+"");
+			disablenpc instance_npcname("Valve#2_"+.@i+"");
+		}
+		'broken_pipes += 1;
+		if ('broken_pipes == 3) {
+			donpcevent instance_npcname("#2_3")+"::OnEnable";
+			stopnpctimer;
+		} else {
+			mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Explosão nos canos detectada! Quando "+(3 - 'broken_pipes)+" canos se quebrarem, o sistema vai parar.",bc_map,"0xff99ff";
+		}
+		end;
+}
+
+1@lhz,151,48,0	script	#2_3	-1,20,20,{
+	end;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("#2_3");
+		end;
+
+	OnEnable:
+		initnpctimer;
+		end;
+
+	OnTimer1000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Sistema enguiçado! Sistema enguiçado! Evacuem o laboratório em 10 segundos.",bc_map,"0xff99ff";
+		end;
+
+	OnTimer11000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] Evacuem!!",bc_map,"0xff99ff";
+		enablenpc instance_npcname("#2_3");
+		end;
+
+	OnTouch:
+		warp "lhz_dun04", 147, 273;
+		end;
+}
+
+1@lhz,39,106,4	script	MobCtrl2#mob02	CLEAR_NPC,{
+	end;
+
+	On01:
+		.@map$ = instance_mapname("1@lhz");
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster .@map$,139,37,164,58,"Animal Faminto",MD_DESERT_WOLF,10,.@label$;
+		end;
+
+	On02:
+		.@map$ = instance_mapname("1@lhz");
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster .@map$,139,37,164,58,"Animal Faminto",MD_DESERT_WOLF,20,.@label$;
+		end;
+
+	On03:
+		.@map$ = instance_mapname("1@lhz");
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster .@map$,139,37,164,58,"Animal Faminto",MD_DESERT_WOLF,16,.@label$;
+		end;
+
+	On04:
+		.@map$ = instance_mapname("1@lhz");
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster .@map$,139,37,164,58,"Animal Faminto",MD_DESERT_WOLF,19,.@label$;
+		end;
+
+	On05:
+		.@map$ = instance_mapname("1@lhz");
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster .@map$,139,37,164,58,"Animal Faminto",MD_DESERT_WOLF,20,.@label$;
+		end;
+
+	On2_01:
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster instance_mapname("1@lhz"),155,43,161,49,"Cobaia Animal",MD_DESERT_WOLF_B,5,.@label$;
+		end;
+
+	On2_02:
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster instance_mapname("1@lhz"),137,40,143,46,"Cobaia Animal",MD_DESERT_WOLF_B,5,.@label$;
+		end;
+
+	On2_03:
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster instance_mapname("1@lhz"),137,51,143,57,"Cobaia Animal",MD_DESERT_WOLF_B,5,.@label$;
+		end;
+
+	On2_04:
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster instance_mapname("1@lhz"),143,56,149,62,"Cobaia Animal",MD_DESERT_WOLF_B,5,.@label$;
+		end;
+
+	On2_05:
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster instance_mapname("1@lhz"),160,48,166,54,"Cobaia Animal",MD_DESERT_WOLF_B,5,.@label$;
+		end;
+
+	On2_06:
+		.@label$ = instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		areamonster instance_mapname("1@lhz"),135,44,141,50,"Cobaia Animal",MD_DESERT_WOLF_B,5,.@label$;
+		end;
+
+	OnDisable:
+		killmonster instance_mapname("1@lhz"),instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead";
+		end;
+
+	OnMyMobDead:
+		if (mobcount(instance_mapname("1@lhz"),instance_npcname("MobCtrl2#mob02")+"::OnMyMobDead") < 1) {
+		  donpcevent instance_npcname("#potal_02")+"::OnEnable";
+		  donpcevent instance_npcname("Lab2#2_1")+"::OnDisable";
+		  mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] O sistema de segurança do laboratório 2 foi desativado.",bc_map,"0xff9977";
+		}
+		end;
+}
+
+-	script	bio4FLab2Valve	-1,{
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		progressbar "0xffff00", 20;
+		stopnpctimer;
+		donpcevent instance_npcname("Lab2#2_2")+"::OnDisableValve1";
+		disablenpc instance_npcname(strnpcinfo(0));
+		end;
+	} else {
+		mes "Deixe seu líder do grupo cuidar da válvula.";
+		close;
+	}
+
+	OnInstanceInit:
+		disablenpc instance_npcname(strnpcinfo(0));
+		end;
+
+	OnEnable:
+		enablenpc instance_npcname(strnpcinfo(0));
+		initnpctimer;
+		end;
+
+	OnTimer3000:
+		specialeffect EF_DRAGONSMOKE,AREA,instance_npcname(strnpcinfo(0));
+		stopnpctimer;
+		initnpctimer;
+		end;
+}
+
+1@lhz,158,46,0	duplicate(bio4FLab2Valve)	Válvula#2_1	CLEAR_NPC
+1@lhz,138,43,0	duplicate(bio4FLab2Valve)	Válvula#2_2	CLEAR_NPC
+1@lhz,139,54,0	duplicate(bio4FLab2Valve)	Válvula#2_3	CLEAR_NPC
+1@lhz,145,60,0	duplicate(bio4FLab2Valve)	Válvula#2_4	CLEAR_NPC
+1@lhz,165,51,0	duplicate(bio4FLab2Valve)	Válvula#2_5	CLEAR_NPC
+1@lhz,137,47,0	duplicate(bio4FLab2Valve)	Válvula#2_6	CLEAR_NPC
+
+1@lhz,151,64,0	script	#potal_02	WARPNPC,2,2,{
+	end;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("#potal_02");
+		end;
+
+	OnEnable:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] A porta que leva ao laboratório 3 está aberta.",bc_map,"0xff99ff";
+		enablenpc instance_npcname("#potal_02");
+		end;
+
+	OnDisable:
+		disablenpc instance_npcname("#potal_02");
+		end;
+
+	OnTouch:
+		warp instance_mapname("1@lhz"), 84, 28;
+		end;
+}
+
+1@lhz,84,28,0	script	#3_0	-1,1,1,{
+	end;
+
+	OnEnable:
+		enablenpc instance_npcname("#3_0");
+		end;
+
+	OnDisable:
+		disablenpc instance_npcname("#3_0");
+		end;
+
+	OnTouch:
+		donpcevent instance_npcname("Lab3#3_1")+"::OnEnable";
+		donpcevent instance_npcname("#3_0")+"::OnDisable";
+		end;
+}
+
+1@lhz,35,104,4	script	Lab3#3_1	CLEAR_NPC,{
+	end;
+
+	OnEnable:
+		initnpctimer;
+		end;
+
+	OnDisable:
+		stopnpctimer;
+		end;
+
+	OnTimer1000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Alerta! Alerta!",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl3#mob03")+"::OnDisable";
+		end;
+
+	OnTimer5000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Intruso detectado no laboratório 3!",bc_map,"0xff9977";
+		end;
+
+	OnTimer7000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Em 5 segundos, o sistema de segurança do laboratório 3 será ativado.",bc_map,"0xff9977";
+		end;
+
+	OnTimer12000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Primeiro sistema de segurança do laboratório 3 ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl3#mob03")+"::On01";
+		end;
+
+	OnTimer192000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Segundo sistema de segurança do laboratório 3 ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl3#mob03")+"::On02";
+		end;
+
+	OnTimer372000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Terceiro sistema de segurança do laboratório 3 ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl3#mob03")+"::On03";
+		end;
+
+	OnTimer552000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Quarto sistema de segurança do laboratório 3 ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl3#mob03")+"::On04";
+		end;
+
+	OnTimer732000:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] Quinto sistema de segurança do laboratório 3 ativado!! Os funcionários devem prosseguir com a evacuação.",bc_map,"0xff9977";
+		donpcevent instance_npcname("MobCtrl3#mob03")+"::On05";
+		stopnpctimer;
+		end;
+}
+
+1@lhz,37,104,4	script	MobCtrl3#mob03	CLEAR_NPC,{
+	end;
+
+	On01:
+		.@map$ = instance_mapname("1@lhz");
+		.@label$ = instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead";
+		monster .@map$,80,60,"Animal Faminto",MD_DESERT_WOLF,1,.@label$;
+		monster .@map$,81,58,"Animal Faminto",MD_DESERT_WOLF,1,.@label$;
+		monster .@map$,82,56,"Animal Faminto",MD_DESERT_WOLF,1,.@label$;
+		monster .@map$,84,60,"Animal Faminto",MD_DESERT_WOLF,1,.@label$;
+		monster .@map$,85,58,"Animal Faminto",MD_DESERT_WOLF,1,.@label$;
+		monster .@map$,82,60,"Cobaia Animal",MD_DESERT_WOLF_B,1,.@label$;
+		monster .@map$,83,58,"Cobaia Animal",MD_DESERT_WOLF_B,1,.@label$;
+		monster .@map$,85,56,"Cobaia Animal",MD_DESERT_WOLF_B,1,.@label$;
+		monster .@map$,86,60,"Cobaia Animal",MD_DESERT_WOLF_B,1,.@label$;
+		monster .@map$,87,58,"Cobaia Animal",MD_DESERT_WOLF_B,1,.@label$;
+		end;
+
+	On02:
+		.@map$ = instance_mapname("1@lhz");
+		.@amount1 = rand(1,5);
+		.@amount2 = rand(1,5);
+		.@label$ = instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead";
+		monster .@map$,80,60,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,82,60,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,84,60,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount1,.@label$;
+		monster .@map$,86,60,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,81,58,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,83,58,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount2,.@label$;
+		monster .@map$,85,58,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,87,58,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,82,56,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount1,.@label$;
+		monster .@map$,85,56,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		end;
+
+	On03:
+		.@map$ = instance_mapname("1@lhz");
+		.@amount1 = rand(1,5);
+		.@amount2 = rand(1,5);
+		.@amount3 = rand(1,5);
+		.@label$ = instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead";
+		monster .@map$,80,60,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,82,60,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,84,60,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,86,60,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount1,.@label$;
+		monster .@map$,81,58,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,83,58,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,85,58,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,87,58,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount2,.@label$;
+		monster .@map$,82,56,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,85,56,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		end;
+
+	On04:
+		.@map$ = instance_mapname("1@lhz");
+		.@amount1 = rand(1,5);
+		.@amount2 = rand(1,5);
+		.@amount3 = rand(1,5);
+		.@amount4 = rand(1,5);
+		.@label$ = instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead";
+		monster .@map$,80,60,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,82,60,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,84,60,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,86,60,"Animal Faminto",MD_DESERT_WOLF,.@amount4,.@label$;
+		monster .@map$,81,58,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount1,.@label$;
+		monster .@map$,83,58,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,85,58,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,87,58,"Animal Faminto",MD_DESERT_WOLF,.@amount4,.@label$;
+		monster .@map$,82,56,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount1,.@label$;
+		monster .@map$,85,56,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		end;
+
+	On05:
+		.@map$ = instance_mapname("1@lhz");
+		.@amount1 = rand(1,5);
+		.@amount2 = rand(1,5);
+		.@amount3 = rand(1,5);
+		.@amount4 = rand(1,5);
+		.@amount5 = rand(1,5);
+		.@label$ = instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead";
+		monster .@map$,80,60,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount1,.@label$;
+		monster .@map$,82,60,"Animal Faminto",MD_DESERT_WOLF,.@amount2,.@label$;
+		monster .@map$,84,60,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,86,60,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount4,.@label$;
+		monster .@map$,81,58,"Animal Faminto",MD_DESERT_WOLF,.@amount5,.@label$;
+		monster .@map$,83,58,"Animal Faminto",MD_DESERT_WOLF,.@amount1,.@label$;
+		monster .@map$,85,58,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount2,.@label$;
+		monster .@map$,87,58,"Animal Faminto",MD_DESERT_WOLF,.@amount3,.@label$;
+		monster .@map$,82,56,"Animal Faminto",MD_DESERT_WOLF,.@amount4,.@label$;
+		monster .@map$,85,56,"Cobaia Animal",MD_DESERT_WOLF_B,.@amount5,.@label$;
+		end;
+
+	OnDisable:
+		killmonster instance_mapname("1@lhz"),instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead";
+		end;
+
+	OnMyMobDead:
+		if (mobcount(instance_mapname("1@lhz"),instance_npcname("MobCtrl3#mob03")+"::OnMyMobDead") < 1) {
+			donpcevent instance_npcname("#potal_03")+"::OnEnable";
+			donpcevent instance_npcname("Lab3#3_1")+"::OnDisable";
+			mapannounce instance_mapname("1@lhz"),"[Sistema de Segurança] O sistema de segurança do laboratório 3 foi desativada.",bc_map,"0xff9977";
+		}
+		end;
+}
+
+1@lhz,83,62,0	script	#potal_03	WARPNPC,2,2,{
+  end;
+
+	OnInstanceInit:
+		disablenpc instance_npcname("#potal_03");
+		end;
+
+	OnEnable:
+		mapannounce instance_mapname("1@lhz"),"[Sistema de Gerenciamento] A porta que leva ao laboratório 4 está aberta.",bc_map,"0x7799ff";
+		enablenpc instance_npcname("#potal_03");
+		end;
+
+	OnDisable:
+		disablenpc instance_npcname("#potal_03");
+		end;
+
+	OnTouch:
+		warp instance_mapname("1@lhz"), 137, 100;
+		end;
+}
+
+1@lhz,137,100,0	script	#4_0	-1,1,1,{
+	end;
+
+	OnEnable:
+		enablenpc instance_npcname("#4_0");
+		end;
+
+	OnDisable:
+		disablenpc instance_npcname("#4_0");
+		end;
+
+	OnTouch:
+		donpcevent instance_npcname("Lab4#4_1")+"::OnEnable";
+		donpcevent instance_npcname("#4_0")+"::OnEnable";
+		end;
+}
+
+1@lhz,35,102,4	script	Lab4#4_1	CLEAR_NPC,{
+	end;
+
+	OnEnable:
+		initnpctimer;
+		end;
+
+	OnDisable:
+		stopnpctimer;
+		end;
+
+	OnTimer1000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Quem é você? ...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Lorde Seyren#boss01");
+		end;
+
+	OnTimer2000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Atiradora de Elite Cecil#boss02");
+		end;
+
+	OnTimer3000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Não se aproxime mais...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Desordeira Gertie#boss03");
+		end;
+
+	OnTimer4000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Algoz Eremes#boss04");
+		end;
+
+	OnTimer5000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Este é um lugar muito perigoso...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Cigana Trentini#boss05");
+		end;
+
+	OnTimer6000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Mestre Chen#boss06");
+		end;
+
+	OnTimer7000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Não vai sair com vida...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Menestrel Alphoccio#boss07");
+		end;
+
+	OnTimer8000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Criador Flamel#boss08");
+		end;
+
+	OnTimer9000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Se não quiser se juntar a nós...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Paladino Randel#boss09");
+		end;
+
+	OnTimer10000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Professora Celia#boss10");
+		end;
+
+	OnTimer11000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Saia agora...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Arquimaga Kathryne#boss11");
+		end;
+
+	OnTimer12000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Sumo Sacerdotisa Margaretha#boss12");
+		end;
+
+	OnTimer13000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Antes que este lugar se preencha com dor e sofrimento...",bc_map,"0x7DCBF0";
+		specialeffect EF_SPHERE,AREA,instance_npcname("Mestre-Ferreiro Howard#boss13");
+		end;
+
+	OnTimer14000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Type_**Gren#boss14");
+		end;
+
+	OnTimer15000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Type_**Roke#boss15");
+		end;
+
+	OnTimer16000:
+		specialeffect EF_SPHERE,AREA,instance_npcname("Type_**Dree#boss16");
+		end;
+
+	OnTimer17000:
+		mapannounce instance_mapname("1@lhz"),"Sussurro: Ah... É... É tarde demais...",bc_map,"0x7DCBF0";
+		donpcevent instance_npcname("MobCtrl4#mob04")+"::OnEnable";
+		stopnpctimer;
+		end;
+}
+
+1@lhz,37,102,4	script	MobCtrl4#mob04	CLEAR_NPC,{
+	end;
+
+	OnEnable:
+		switch(rand(1,13)) {
+		case 1:
+			donpcevent instance_npcname("Lorde Seyren#boss01")+"::OnEnable";
+			end;
+		case 2:
+			donpcevent instance_npcname("Atiradora de Elite Cecil#boss02")+"::OnEnable";
+			end;
+		case 3:
+			donpcevent instance_npcname("Desordeira Gertie#boss03")+"::OnEnable";
+			end;
+		case 4:
+			donpcevent instance_npcname("Algoz Eremes#boss04")+"::OnEnable";
+			end;
+		case 5:
+			donpcevent instance_npcname("Cigana Trentini#boss05")+"::OnEnable";
+			end;
+		case 6:
+			donpcevent instance_npcname("Mestre Chen#boss06")+"::OnEnable";
+			end;
+		case 7:
+			donpcevent instance_npcname("Menestrel Alphoccio#boss07")+"::OnEnable";
+			end;
+		case 8:
+			donpcevent instance_npcname("Criador Flamel#boss08")+"::OnEnable";
+			end;
+		case 9:
+			donpcevent instance_npcname("Paladino Randel#boss09")+"::OnEnable";
+			end;
+		case 10:
+			donpcevent instance_npcname("Professora Celia#boss10")+"::OnEnable";
+			end;
+		case 11:
+			donpcevent instance_npcname("Arquimaga Kathryne#boss11")+"::OnEnable";
+			end;
+		case 12:
+			donpcevent instance_npcname("Sumo Sacerdotisa Margaretha#boss12")+"::OnEnable";
+			end;
+		case 13:
+			donpcevent instance_npcname("Mestre-Ferreiro Howard#boss13")+"::OnEnable";
+			end;
+		}
+
+	OnDisable:
+		//stopnpctimer;
+		end;
+}
+
+1@lhz,156,148,3	script	Type_**Gren#boss14	4_M_03,{ end; }
+1@lhz,152,152,3	script	Type_**Roke#boss15	4_M_HUMAN_01,{ end; }
+1@lhz,148,156,3	script	Type_**Dree#boss16	4_M_DWARF,{ end; }
+
+-	script	bio4FBoss	-1,{
+  end;
+
+  OnEnable:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	specialeffect EF_SUI_EXPLOSION;
+	if(strnpcinfo(0) == "Lorde Seyren#boss01") {
+		monster .@map$,129,154,"Lorde Seyren",B_SEYREN,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Atiradora de Elite Cecil#boss02") {
+		monster .@map$,125,150,"Atiradora de Elite Cecil",B_SHECIL,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Desordeira Gertie#boss03") {
+		monster .@map$,121,146,"Desordeira Gertie",B_GERTIE,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Algoz Eremes#boss04") {
+		monster .@map$,117,142,"Algoz Eremes",B_EREMES,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Cigana Trentini#boss05") {
+		monster .@map$,117,125,"Cigana Trentini",B_TRENTINI,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Mestre Chen#boss06") {
+		monster .@map$,121,121,"Mestre Chen",B_CHEN,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Menestrel Alphoccio#boss07") {
+		monster .@map$,125,117,"Menestrel Alphoccio",B_ALPHOCCIO,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Criador Flamel#boss08") {
+		monster .@map$,129,113,"Criador Flamel",B_FLAMEL,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Paladino Randel#boss09") {
+		monster .@map$,146,113,"Paladino Randel",B_RANDEL,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Professora Celia#boss10") {
+		monster .@map$,150,117,"Professora Celia",B_CELIA,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Arquimaga Kathryne#boss11") {
+		monster .@map$,154,121,"Arquimaga Kathryne",B_KATRINN,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Sumo Sacerdotisa Margaretha#boss12") {
+		monster .@map$,158,125,"Sumo Sacerdotisa Margaretha",B_MAGALETA,1,.@label$;
+	}
+	if(strnpcinfo(0) == "Mestre-Ferreiro Howard#boss13") {
+		monster .@map$,158,142,"Mestre-Ferreiro Howard",B_HARWORD,1,.@label$;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+
+  OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+
+	OnMyMobDead:
+		if (mobcount(instance_mapname("1@lhz"), instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+			.@map$ = instance_mapname("1@lhz");
+			if(strnpcinfo(0) == "Lorde Seyren#boss01")
+				mapannounce .@map$,"Ahhh... Onde estão meus companheiros...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Atiradora de Elite Cecil#boss02")
+				mapannounce .@map$,"Alguém, por favor, ajude... Por favor...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Desordeira Gertie#boss03")
+				mapannounce .@map$,"... Eu fui com muita força...?",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Algoz Eremes#boss04")
+				mapannounce .@map$,"Ah... estou totalmente derrotado...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Cigana Trentini#boss05")
+				mapannounce .@map$,"Ah... Se eu... pudesse... dançar e... cantar... feliz...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Mestre Chen#boss06")
+				mapannounce .@map$,"Eu... sinto... tanto...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Menestrel Alphoccio#boss07")
+				mapannounce .@map$,"A canção nova... era... para... ela...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Criador Flamel#boss08")
+				mapannounce .@map$,"Ha... Eu queria mostrar... uma nova poção...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Paladino Randel#boss09")
+				mapannounce .@map$,"Aaaai... Todos foram derrotados...??",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Professora Celia#boss10")
+				mapannounce .@map$,"Não... Este experimento... Maldição...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Arquimaga Kathryne#boss11")
+				mapannounce .@map$,"awww... todos estão bem...?",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Sumo Sacerdotisa Margaretha#boss12")
+				mapannounce .@map$,"Meu bom menino... não chore... ah... nosso Grande Odin... por favor, salve-nos...",bc_map,"0xFD3B02";
+			else if (strnpcinfo(0) == "Mestre-Ferreiro Howard#boss13")
+				mapannounce .@map$,"oh... não... não consigo respirar... e minha irmã...?? Irmã!!",bc_map,"0xFD3B02";
+			donpcevent instance_npcname("Wolfchev#last")+"::OnEnable";
+			donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
+		}
+		end;
+}
+
+1@lhz,127,156,5	duplicate(bio4FBoss)	Lorde Seyren#boss01	B_SEYREN
+1@lhz,123,152,5	duplicate(bio4FBoss)	Atiradora de Elite Cecil#boss02	B_SHECIL
+1@lhz,119,148,5	duplicate(bio4FBoss)	Desordeira Gertie#boss03	B_GERTIE
+1@lhz,115,144,5	duplicate(bio4FBoss)	Algoz Eremes#boss04	B_EREMES
+1@lhz,115,123,7	duplicate(bio4FBoss)	Cigana Trentini#boss05	B_TRENTINI
+1@lhz,119,119,7	duplicate(bio4FBoss)	Mestre Chen#boss06	B_CHEN
+1@lhz,123,115,7	duplicate(bio4FBoss)	Menestrel Alphoccio#boss07	B_ALPHOCCIO
+1@lhz,127,111,7	duplicate(bio4FBoss)	Criador Flamel#boss08	B_FLAMEL
+1@lhz,148,111,1	duplicate(bio4FBoss)	Paladino Randel#boss09	B_RANDEL
+1@lhz,152,115,1	duplicate(bio4FBoss)	Professora Celia#boss10	B_CELIA
+1@lhz,156,119,1	duplicate(bio4FBoss)	Arquimaga Kathryne#boss11	B_KATRINN
+1@lhz,160,123,1	duplicate(bio4FBoss)	Sumo Sacerdotisa Margaretha#boss12	B_MAGALETA
+1@lhz,160,144,3	duplicate(bio4FBoss)	Mestre-Ferreiro Howard#boss13	B_HARWORD
+
+1@lhz,137,156,7	script	Wolfchev#last	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000 Você está carregando muitos itens. Retorne quando estiver guardado alguns deles. ^000000";
+		close;
+	}
+	.@all_quests_complete = true;
+	for(.@i = 5113; .@i <= 5125; .@i++) {
+		if(questprogress(.@i, HUNTING) != 2)
+			.@all_quests_complete = false;
+	}
+	if (.@all_quests_complete) {
+		.@reward = rand(1, 1000);
+		if (lght_duk01 == 8) {
+			mes "[Wolfchev]";
+			mes "Finalmente, derrotou minha criatura-chefe.";
+			next;
+			mes "[Wolfchev]";
+			mes "Enfim, este é o resultado? Eles me engaram?";
+			next;
+			mes "[Wolfchev]";
+			mes "O botão deveria ter sido pressionado somente em caso de emergência... porém...";
+			next;
+			mes "[Wolfchev]";
+			mes "Ei... você e eu nos conhecemos de uma maneira tão ruim...";
+			next;
+			mes "[Wolfchev]";
+			mes "Mas... você me ajudou... por que você fez isso?";
+			next;
+			mes "["+strcharinfo(PC_NAME)+"]";
+			mes "Quando eu conheci você pela primeira vez, você parecia maluco, mas triste, mesmo que você tenha cometido essas experiências cruéis e horríveis...";
+			next;
+			mes "["+strcharinfo(PC_NAME)+"]";
+			mes "Contudo, na verdade, você fez isso porque estava solitário... você acabou se concentrando nisso por causa da sua solidão, não foi?";
+			next;
+			mes "[Wolfchev]";
+			mes "HAHAHAHa. Solidão... você diz?";
+			next;
+			mes "[Wolfchev]";
+			mes "Pode ter sido isso para você. Mas, não é verdade. A solidão é apenas uma boa e fácil desculpa dos perdedores.";
+			next;
+			mes "[Wolfchev]";
+			mes "Estou muito feliz realizando experiências, buscando uma perfeição, nunca me sinto solitário.";
+			next;
+			mes "[Wolfchev]";
+			mes "De qualquer maneira, desde que descobri a traição de Rekenber, não posso deixar que eles façam o que bem entender.";
+			next;
+			mes "[Wolfchev]";
+			mes "Por agora, vou deixá-los em paz, mas vou fazê-los chorar e lamentar por tentar acabar com Wolfchev.";
+			next;
+			mes "["+strcharinfo(PC_NAME)+"]";
+			mes "... .... ... ....";
+			next;
+			for(.@i = 5113; .@i <= 5125; .@i++) {
+				erasequest .@i;
+			}
+			lght_duk01 = 9;
+			if (.@reward >= 1 && .@reward < 84) {
+				getitem Salvage_Cape, 1;
+			} else if (.@reward >= 84 && .@reward < 167) {
+				getitem Ancient_Gold_Deco, 1;
+			} else if (.@reward >= 167 && .@reward < 250) {
+				getitem Giant_Lance, 1;
+			} else if (.@reward >= 250 && .@reward < 333) {
+				getitem Bloody_Cross, 1;
+			} else if (.@reward >= 333 && .@reward < 416) {
+				getitem Guillotine_Katar, 1;
+			} else if (.@reward >= 416 && .@reward < 499) {
+				getitem Chilly_Spell_Book, 1;
+			} else if (.@reward >= 499 && .@reward < 582) {
+				getitem Goast_Chill, 10;
+			} else if (.@reward >= 582 && .@reward < 665) {
+				getitem Blood_Thirst, 10;
+			} else if (.@reward >= 665 && .@reward < 748) {
+				getitem Will_Of_Warrior, 10;
+			} else if (.@reward >= 748 && .@reward < 831) {
+				getitem Goast_Chill, 20;
+			} else if (.@reward >= 831 && .@reward < 914) {
+				getitem Blood_Thirst, 20;
+			} else {
+				getitem Will_Of_Warrior, 20;
+			}
+			mes "[Wolfchev]";
+			mes "Aaaaaah, "+strcharinfo(PC_NAME)+", fico muito agradecido por você ter cuidado das minhas criaturas que ficaram malucas. Não é grande coisa, mas eu precisava disso.";
+			next;
+			mes "[Wolfchev]";
+			mes "E, se você puder... espero que você volte logo, especialmente com seus amigos. Eu quero que este lugar esteja rodeado pelos sentimentos humanos novamente, assim, a tristeza desaparecerá daqui.";
+			next;
+			mes "Olhei para Wolfchev novamente antes dele sair de seu laboratório, e eu pude sentir que ele não estava mais obcecado por seus planos...";
+			close2;
+			warp "lhz_dun04", 147, 273;
+			end;
+		} else {
+			mes "[Wolfchev]";
+			mes "Você derrotou todas as criaturas dos chefes. Obrigado novamente.";
+			next;
+			for(.@i = 5113; .@i <= 5125; .@i++) {
+				erasequest .@i;
+			}
+			if (.@reward >= 1 && .@reward < 84) {
+				getitem Salvage_Cape, 1;
+			} else if (.@reward >= 84 && .@reward < 167) {
+				getitem Ancient_Gold_Deco, 1;
+			} else if (.@reward >= 167 && .@reward < 250) {
+				getitem Giant_Lance, 1;
+			} else if (.@reward >= 250 && .@reward < 333) {
+				getitem Bloody_Cross, 1;
+			} else if (.@reward >= 333 && .@reward < 416) {
+				getitem Guillotine_Katar, 1;
+			} else if (.@reward >= 416 && .@reward < 499) {
+				getitem Chilly_Spell_Book, 1;
+			} else if (.@reward >= 499 && .@reward < 582) {
+				getitem Goast_Chill, 10;
+			} else if (.@reward >= 582 && .@reward < 665) {
+				getitem Blood_Thirst, 10;
+			} else if (.@reward >= 665 && .@reward < 748) {
+				getitem Will_Of_Warrior, 10;
+			} else if (.@reward >= 748 && .@reward < 831) {
+				getitem Goast_Chill, 20;
+			} else if (.@reward >= 831 && .@reward < 914) {
+				getitem Blood_Thirst, 20;
+			} else {
+				getitem Will_Of_Warrior, 20;
+			}
+			mes "[Wolfchev]";
+			mes "Repito, "+strcharinfo(PC_NAME)+", agradeço muito por você ter cuidado das minhas criaturas que ficaram malucas. Não é grande coisa, mas eu precisava disso.";
+			next;
+			mes "[Wolfchev]";
+			mes "Khahaha, nos veremos novamente. Você quer sair daqui agora?";
+			next;
+			if(select("Ainda não", "Sim") == 1) {
+				mes "[Wolfchev]";
+				mes "Então me diga quando quiser.";
+				close;
+			}
+			mes "[Wolfchev]";
+			mes "Vou te tirar daqui.";
+			close2;
+			warp "lhz_dun04", 147, 273;
+			end;
+		}
+	} else {
+		if (!.@all_quests_complete) {
+			mes "[Wolfchev]";
+			mes "Eu estava analisando o sistema... não sei quem fez isso... é tão complexo de manusear... não faço ideia...";
+			next;
+		} else {
+			mes "[Wolfchev]";
+			mes "kakakaah... Obrigado. Você lidou muito bem com essas crituras-chefes...";
+			next;
+		}
+		if (lght_duk01 == 7) {
+			lght_duk01 = 8;
+			mes "[Wolfchev]";
+			mes "Enquanto você estava lutando...";
+			next;
+			mes "[Wolfchev]";
+			mes "Eu descobri algo... há um erro no sistema que não nos permite entrar e sair livremente, então você poderia me ajudar a resolver isso? Antes, aguarde um prazo de 72 horas... vá descansar e depois volte.";
+			next;
+			mes "[Wolfchev]";
+			mes "Ah... e posso mandar você para fora do laboratório. Você quer?";
+			next;
+		} else {
+			mes "[Wolfchev]";
+			mes "Você quer sair daqui agora?";
+			next;
+		}
+		if(select("Ainda não", "Sim") == 1) {
+			mes "[Wolfchev]";
+			mes "Então me diga quando quiser.";
+			close;
+		}
+		mes "[Wolfchev]";
+		mes "Então, eu vou te tirar daqui.";
+		close2;
+		warp "lhz_dun04", 147, 273;
+		end;
+	}
+
+	OnInstanceInit:
+	OnDisable:
+		disablenpc instance_npcname("Wolfchev#last");
+		end;
+
+	OnEnable:
+		enablenpc instance_npcname("Wolfchev#last");
+		end;
+}

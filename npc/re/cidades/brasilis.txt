@@ -1,0 +1,176 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: brailis.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/Herc/brA Dev. Team                   |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/Herc/brA: 1.3/1.3/1.3/1.0                |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Brasilis (RE)             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Brasilis Transportation
+//============================================================
+/* Pre-Renewal coordinates: alberta,247,115,3 */
+alberta,246,82,3	script	Tripulante#bra2	4W_SAILOR,{
+	mes "[Tripulante]";
+	mes "Ei, você já ouviu falar de um lugar chamado Brasilis?";
+	mes "É uma cidade tropical quente como o deserto, mas também chuvosa. É um lugar muito misterioso.";
+	next;
+	mes "[Tripulante]";
+	mes "Nós recentemente encontramos uma nova rota no oceano para chegar lá facilmente.";
+	mes "São apenas 10.000 zeny para uma viagem de ida e volta! E então, você quer ir?";
+	next;
+	switch(select("Leve-me para Brasilis!:Não! Eu ficarei aqui.")) {
+	case 1:
+		if (Zeny > 9999) {
+			mes "[Tripulante]";
+			mes "Legaaal~!! Vamoooss~!";
+			Zeny -= 10000;
+			close2;
+			warp "brasilis",314,60;
+			end;
+		}
+		else {
+			mes "[Tripulante]";
+			mes "Eu disse 10,000 zeny.";
+			close;
+		}
+	case 2:
+		mes "[Tripulante]";
+		mes "Bem, se você estiver interessado, me avise que eu te levarei até lá.";
+		close;
+	}
+}
+
+brasilis,316,57,3	script	Tripulante#bra1	4W_SAILOR,{
+	mes "[Tripulante]";
+	mes "Meu navio vai voltar para Alberta, você quer se juntar a nós?";
+	next;
+	switch(select("Voltar para Alberta.:Ainda não~.")) {
+	case 1:
+		mes "[Tripulante]";
+		mes "Com certeza, sinto falta de casa.";
+		close2;
+		if (RENEWAL)
+			warp "alberta",243,82;
+		else
+			warp "alberta",244,115;
+		end;
+	case 2:
+		mes "[Tripulante]";
+		mes "Ok, fique à vontade. Nos vemos quando voltarmos então.";
+		close;
+	}
+}
+
+// Generic Brasilis NPCs
+//============================================================
+brasilis,155,165,3	script	Signpost#bra1	4_BULLETIN_BOARD2,{
+	mes ":: Museu de Arte ::";
+	close;
+}
+
+brasilis,195,231,3	script	Signpost#bra2	4_BULLETIN_BOARD2,{
+	mes ":: Monumento às Bandeiras ::";
+	close;
+}
+
+brasilis,240,247,3	script	Signpost#bra3	4_BULLETIN_BOARD2,{
+	mes ":: Mercado ::";
+	mes " ";
+	mes "- Para as suas poções e armamento -";
+	close;
+}
+
+brasilis,303,309,3	script	Signpost#bra4	4_BULLETIN_BOARD2,{
+	mes ":: Jungle Cable ::";
+	mes "";
+	mes "- Não é para os corações fracos -";
+	close;
+}
+
+brasilis,278,137,3	script	Signpost#bra5	4_BULLETIN_BOARD2,{
+	mes ":: Brasilis Hotel ::";
+	close;
+}
+
+brasilis,137,77,5	script	Ice-Cream Maker	4_M_03,{
+	mes "[Sorveteiro]";
+	mes "Venha~Venha~";
+	mes "Sorvete é o lanche perfeito para um dia quente~";
+	mes "É apenas ^3355FF100 Zeny^000000~";
+	mes "Sorvete~";
+	mes "Pegue seu sorvete!";
+	next;
+	switch(select("Me dê um!:Sorvete?:Cancelar.")) {
+	case 1:
+		mes "[Sorveteiro]";
+		mes "Como tem muitas pessoas querendo um sorvete geladinho, você pode encomendar apenas 5 de cada vez.";
+		mes "Então, quantos você quer?";
+		next;
+		while(1) {
+			input .@input; //,1,5;
+			if (.@input == 0) {
+				mes "[Sorveteiro]";
+				mes "Nenhum?";
+				mes "Bem, saia do caminho, tenho clientes para servir.";
+				close;
+			}
+			else if ((.@input < 0) || (.@input > 5)) {
+				mes "[Sorveteiro]";
+				mes "Wow.";
+				mes "Você pediu muito.";
+				mes "Se você comer mais de 5, vai precisar lutar com um monstro no seu estômago hahahaha. Fique calmo, camarada.";
+				next;
+			}
+			else
+				break;
+		}
+		.@icecream_hap = .@input*100;
+		if (Zeny < .@icecream_hap) {
+			mes "[Sorveteiro]";
+			mes "Poxa~! Você não tem dinheiro suficiente.";
+			mes "É apenas ^3355FF100 Zeny^000000~ ...Sinceramente!";
+			close;
+		}
+		if (!checkweight(536,.@input)) {
+			mes "[Sorveteiro]";
+			mes "Você está carregando muitas coisas.";
+			mes "Livre-se um pouco de tanto peso antes de comprar.";
+			close;
+		}
+		Zeny -= .@icecream_hap;
+		getitem 536,.@input; //Ice_Cream
+		close;
+	case 2:
+		mes "[Sorveteiro]";
+		mes "'Sorvete é...";
+		mes "Espere, você não sabe ";
+		mes "oque é um sorvete?";
+		mes "Em que caverna ";
+		mes "você tem vivido?";
+		next;
+		mes "[Sorveteiro]";
+		mes "Eu não vou nem começar com o quão estranho isso soa.";
+		mes "De qualquer forma, pegue o seu sorvete aqui, enquanto está gostoso e geladinho.";
+		close;
+	case 3:
+		mes "[Sorveteiro]";
+		mes "Não perca a chance de comer o melhor sorvete de todo o planeta terra~!";
+		close;
+	}
+}
